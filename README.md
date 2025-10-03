@@ -15,20 +15,20 @@ A comprehensive Python system for comparing three knowledge-driven QA/retrieval 
 ### **🌐 Interactive Dashboard (Recommended)**
 ```bash
 # Launch Streamlit Dashboard (Demo Mode - No Setup Required)
-.\run_streamlit.bat demo
+scripts\run_streamlit.bat demo
 
 # Or for full system integration
-.\run_streamlit.bat
+scripts\run_streamlit.bat
 ```
 **Dashboard URL**: [http://localhost:8501](http://localhost:8501)
 
-### **� Command Line Interface**
+### **💻 Command Line Interface**
 ```bash
 # Quick test run
-.\run_quick_tests.bat
+scripts\run_quick_tests.bat
 
 # Full evaluation pipeline
-.\run_full_pipeline.bat
+scripts\run_full_pipeline.bat
 ```
 
 ## �📋 **Table of Contents**
@@ -83,10 +83,10 @@ The Streamlit dashboard provides a comprehensive web interface for testing and c
 #### **Option 1: Demo Mode (Instant Access)**
 ```bash
 # Windows
-.\run_streamlit.bat demo
+scripts\run_streamlit.bat demo
 
 # Unix/Linux
-./run_streamlit.sh demo
+scripts/run_streamlit.sh demo
 ```
 - ✅ **No setup required** - runs with mock data
 - ✅ **Full UI experience** - complete dashboard functionality
@@ -96,12 +96,12 @@ The Streamlit dashboard provides a comprehensive web interface for testing and c
 #### **Option 2: Full System Integration**
 ```bash
 # Windows - Setup and launch
-.\dev_setup.bat
-.\run_streamlit.bat
+scripts\dev_setup.bat
+scripts\run_streamlit.bat
 
 # Unix/Linux - Setup and launch
-./dev_setup.sh
-./run_streamlit.sh
+scripts/dev_setup.sh
+scripts/run_streamlit.sh
 ```
 - ✅ **Live system integration** - real RAG queries
 - ✅ **Real-time performance** - actual timing and quality metrics
@@ -124,10 +124,10 @@ Explore the complexity and structure of your knowledge graphs with an interactiv
 ### **🚀 Launch Graph Visualizer**
 ```bash
 # Windows
-.\run_graph_visualizer.bat
+scripts\run_graph_visualizer.bat
 
 # Unix/Linux  
-./run_graph_visualizer.sh
+scripts/run_graph_visualizer.sh
 ```
 **Visualizer URL**: [http://localhost:8502](http://localhost:8502)
 
@@ -209,18 +209,18 @@ This system includes a comprehensive AI knowledge base covering modern concepts:
 **Windows:**
 ```bash
 # Complete setup and pipeline execution
-dev_setup.bat                 # One-time setup
-docker_services.bat start     # Start services (optional)
-run_full_pipeline.bat         # Execute full pipeline
+scripts\dev_setup.bat                 # One-time setup
+scripts\docker_services.bat start     # Start services (optional)
+scripts\run_full_pipeline.bat         # Execute full pipeline
 ```
 
 **Unix/Linux:**
 ```bash
 # Make scripts executable and run setup
-chmod +x *.sh
-./dev_setup.sh                # One-time setup
-./docker_services.sh start    # Start services (optional)
-./run_full_pipeline.sh        # Execute full pipeline
+chmod +x scripts/*.sh
+scripts/dev_setup.sh                # One-time setup
+scripts/docker_services.sh start    # Start services (optional)
+scripts/run_full_pipeline.sh        # Execute full pipeline
 ```
 
 > 📖 **See [SCRIPTS_USAGE_GUIDE.md](SCRIPTS_USAGE_GUIDE.md) for comprehensive automation guide**
@@ -566,14 +566,11 @@ rag_vs_graph_rag_py/
 ├── configs/                  # Configuration files
 │   ├── default.yaml         # Default configuration
 │   └── dev.yaml            # Development configuration
-├── 🌐 Streamlit Dashboard/   # Interactive web interface
+├── 🌐 Streamlit Dashboard/   # Interactive web interface  
 │   ├── streamlit_app.py     # Main dashboard application
 │   ├── streamlit_demo.py    # Demo version with mock data
-│   ├── .streamlit/          # Dashboard configuration
-│   │   └── config.toml      # Streamlit settings
-│   ├── run_streamlit.bat    # Windows launcher
-│   ├── run_streamlit.sh     # Unix launcher
-│   └── STREAMLIT_GUIDE.md   # Complete dashboard documentation
+│   └── .streamlit/          # Dashboard configuration
+│       └── config.toml      # Streamlit settings
 ├── data/                    # Data directory (generated)
 │   ├── documents/           # Your input documents
 │   │   ├── ai_introduction.md
@@ -592,11 +589,15 @@ rag_vs_graph_rag_py/
 │       ├── evaluation_2025-10-02_21-30-45.json
 │       ├── detailed_2025-10-02_21-30-45.csv
 │       └── comparison_report.html
-├── 🤖 Automation Scripts/    # Complete workflow automation
-│   ├── dev_setup.bat/.sh    # Development environment setup
-│   ├── run_full_pipeline.bat/.sh  # Complete evaluation pipeline
-│   ├── run_quick_tests.bat/.sh    # Quick system validation
-│   └── docker_services.bat/.sh   # Docker service management
+├── scripts/                 # 🤖 Automation scripts
+│   ├── dev_setup.bat/.sh        # Development environment setup
+│   ├── run_full_pipeline.bat/.sh # Complete evaluation pipeline
+│   ├── run_quick_tests.bat/.sh  # Quick system validation
+│   ├── docker_services.bat/.sh # Docker service management
+│   ├── run_streamlit.bat/.sh    # Launch interactive dashboard
+│   ├── run_graph_visualizer.bat/.sh # Launch graph visualization
+│   └── README.md            # Scripts documentation
+├── docker/                  # Docker configuration
 ├── docker/                  # Docker configuration
 │   ├── docker-compose.yml
 │   ├── setup.sh
@@ -814,25 +815,25 @@ experiment:
 #### **🚀 Production Deployment Workflow**
 ```bash
 # Windows Production Setup
-dev_setup.bat                    # Environment setup
-.\docker_services.bat start      # Start services
-.\run_full_pipeline.bat          # Full pipeline
-.\run_quick_tests.bat experiment # Evaluation
+scripts\dev_setup.bat                    # Environment setup
+scripts\docker_services.bat start        # Start services
+scripts\run_full_pipeline.bat            # Full pipeline
+scripts\run_quick_tests.bat experiment   # Evaluation
 
 # Unix/Linux Production Setup
-./dev_setup.sh                   # Environment setup
-./docker_services.sh start       # Start services
-./run_full_pipeline.sh           # Full pipeline
-./run_quick_tests.sh experiment  # Evaluation
+scripts/dev_setup.sh                   # Environment setup
+scripts/docker_services.sh start       # Start services
+scripts/run_full_pipeline.sh           # Full pipeline
+scripts/run_quick_tests.sh experiment  # Evaluation
 ```
 
 #### **🔧 Development Workflow**
 ```bash
 # Quick iteration during development
-.\run_quick_tests.bat ingest     # Process new documents
-.\run_quick_tests.bat vector     # Rebuild vector store
-.\run_quick_tests.bat query      # Test sample queries
-.\run_quick_tests.bat experiment # Run evaluation
+scripts\run_quick_tests.bat ingest     # Process new documents
+scripts\run_quick_tests.bat vector     # Rebuild vector store
+scripts\run_quick_tests.bat query      # Test sample queries
+scripts\run_quick_tests.bat experiment # Run evaluation
 ```
 
 #### **📊 Batch Processing Workflow**
@@ -840,9 +841,9 @@ dev_setup.bat                    # Environment setup
 # Process multiple document sets
 for folder in docs1 docs2 docs3; do
     cp -r $folder/* data/documents/
-    ./run_quick_tests.sh ingest
-    ./run_quick_tests.sh vector
-    ./run_quick_tests.sh experiment
+    scripts/run_quick_tests.sh ingest
+    scripts/run_quick_tests.sh vector
+    scripts/run_quick_tests.sh experiment
     mv experiments/results/ results_$folder/
 done
 ```
@@ -1465,6 +1466,6 @@ This README provides:
 
 **🎯 Ready to revolutionize your knowledge retrieval system? Start with the automated setup!**
 
-**Windows**: `dev_setup.bat` → `.\docker_services.bat start` → `.\run_full_pipeline.bat`
+**Windows**: `scripts\dev_setup.bat` → `scripts\docker_services.bat start` → `scripts\run_full_pipeline.bat`
 
-**Unix/Linux**: `./dev_setup.sh` → `./docker_services.sh start` → `./run_full_pipeline.sh`
+**Unix/Linux**: `scripts/dev_setup.sh` → `scripts/docker_services.sh start` → `scripts/run_full_pipeline.sh`
