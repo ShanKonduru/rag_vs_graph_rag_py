@@ -28,14 +28,12 @@ class OllamaClient(LLMClient):
             logger.warning(f"Ollama server at {self.base_url} is not available")
     
     def generate(self, request: LLMRequest) -> LLMResponse:
-        """Generate response from Ollama"""
+        """Generate response from Ollama using /api/chat endpoint"""
         
-        # Convert messages to prompt
-        prompt = self._messages_to_prompt(request.messages)
-        
+        # Use the chat API format which works reliably
         payload = {
             "model": self.model_name,
-            "prompt": prompt,
+            "messages": request.messages,
             "stream": False,
             "options": {
                 "temperature": request.temperature,
@@ -48,7 +46,7 @@ class OllamaClient(LLMClient):
         
         try:
             response = requests.post(
-                f"{self.base_url}/api/generate",
+                f"{self.base_url}/api/chat",  # Use /api/chat which works
                 json=payload,
                 timeout=self.timeout,
                 headers={"Content-Type": "application/json"}
@@ -57,8 +55,13 @@ class OllamaClient(LLMClient):
             
             result = response.json()
             
+            # Extract content from chat response
+            content = ""
+            if "message" in result and "content" in result["message"]:
+                content = result["message"]["content"]
+            
             return LLMResponse(
-                text=result.get("response", ""),
+                text=content,
                 model=self.model_name,
                 finish_reason=result.get("done_reason"),
                 metadata={

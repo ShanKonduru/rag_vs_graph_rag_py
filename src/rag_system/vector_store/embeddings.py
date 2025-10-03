@@ -19,8 +19,14 @@ class SentenceTransformerEmbedding(EmbeddingModel):
         self.device = device
         self.batch_size = batch_size
         
-        # Load model
-        self.model = SentenceTransformer(model_name, device=device)
+        # Load model with automatic download
+        try:
+            self.model = SentenceTransformer(model_name, device=device)
+        except Exception as e:
+            # If model not found, try to download it explicitly
+            print(f"Downloading model {model_name}...")
+            from sentence_transformers import SentenceTransformer
+            self.model = SentenceTransformer(model_name, device=device, trust_remote_code=True)
         
         # Get model info
         self.dimension = self.model.get_sentence_embedding_dimension()
