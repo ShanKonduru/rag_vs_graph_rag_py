@@ -12,6 +12,7 @@ This folder contains all the automation scripts for the RAG vs Graph RAG vs Know
 | `docker_services.bat/.sh` | Windows/Unix | Docker service management (start/stop/status) |
 | `run_streamlit.bat/.sh` | Windows/Unix | Launch interactive Streamlit dashboard |
 | `run_graph_visualizer.bat/.sh` | Windows/Unix | Launch graph visualization tool |
+| `run_comparison_dashboard.bat/.sh` | Windows/Unix | **NEW:** Real-time RAG systems comparison dashboard |
 
 ## 🚀 Quick Start
 

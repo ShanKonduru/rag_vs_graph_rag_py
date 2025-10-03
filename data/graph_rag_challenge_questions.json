@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "question": "What is the relationship between artificial intelligence, machine learning, and deep learning? How do they build upon each other?",
+    "category": "Hierarchical Relationships",
+    "why_graph_rag_better": "Graph RAG can traverse the hierarchical relationship (AI → ML → DL) to provide complete context, while standard RAG might retrieve isolated chunks about each topic separately.",
+    "expected_graph_advantage": "Shows the parent-child relationships and dependencies between these interconnected concepts.",
+    "complexity": "Medium"
+  },
+  {
+    "id": 2,
+    "question": "If I use transformer architecture in natural language processing, what other AI techniques am I likely also using, and what prerequisites should I understand first?",
+    "category": "Dependency Chains",
+    "why_graph_rag_better": "Graph RAG can follow dependency chains (attention mechanisms → embeddings → neural networks → linear algebra) while RAG might miss these prerequisite relationships.",
+    "expected_graph_advantage": "Provides learning pathway and prerequisite knowledge that standard RAG would miss.",
+    "complexity": "High"
+  },
+  {
+    "id": 3,
+    "question": "What are all the different applications where computer vision and natural language processing are used together?",
+    "category": "Cross-Domain Connections",
+    "why_graph_rag_better": "Graph RAG can identify connections between separate domains (CV + NLP → image captioning, visual QA, OCR, etc.) that standard RAG treats as separate topics.",
+    "expected_graph_advantage": "Discovers interdisciplinary applications that require knowledge from multiple domains.",
+    "complexity": "High"
+  },
+  {
+    "id": 4,
+    "question": "If someone knows Python and machine learning basics, what would be the most logical next steps to learn deep learning, and in what order?",
+    "category": "Learning Pathways",
+    "why_graph_rag_better": "Graph RAG can construct learning pathways by following prerequisite relationships and skill dependencies, while RAG gives fragmented information.",
+    "expected_graph_advantage": "Provides structured learning progression based on knowledge dependencies.",
+    "complexity": "Medium"
+  },
+  {
+    "id": 5,
+    "question": "Which AI research papers or techniques influenced the development of ChatGPT, and how do they connect to each other?",
+    "category": "Historical Influence Networks",
+    "why_graph_rag_better": "Graph RAG can trace influence networks and citation relationships (Attention → Transformer → BERT → GPT → ChatGPT) that standard RAG cannot connect.",
+    "expected_graph_advantage": "Shows the evolution and influence chain in AI research that led to modern LLMs.",
+    "complexity": "High"
+  },
+  {
+    "id": 6,
+    "question": "What are the common failure modes shared between recommendation systems, search engines, and content moderation systems?",
+    "category": "Cross-System Patterns",
+    "why_graph_rag_better": "Graph RAG can identify shared patterns and common issues across different AI systems, while RAG treats each system in isolation.",
+    "expected_graph_advantage": "Reveals cross-cutting concerns and shared challenges across different AI applications.",
+    "complexity": "High"
+  },
+  {
+    "id": 7,
+    "question": "If I'm working on autonomous vehicles, what other AI domains should I study, and how do they relate to self-driving cars?",
+    "category": "Multi-Modal Integration",
+    "why_graph_rag_better": "Graph RAG can connect autonomous vehicles to computer vision, robotics, sensor fusion, path planning, etc., showing how these domains integrate.",
+    "expected_graph_advantage": "Maps the ecosystem of related technologies and their integration points.",
+    "complexity": "High"
+  },
+  {
+    "id": 8,
+    "question": "What are the ethical implications that span across facial recognition, recommendation algorithms, and hiring AI systems?",
+    "category": "Cross-Application Ethics",
+    "why_graph_rag_better": "Graph RAG can identify shared ethical concerns (bias, privacy, fairness) across different AI applications, while RAG addresses each separately.",
+    "expected_graph_advantage": "Reveals common ethical frameworks and principles that apply across multiple AI domains.",
+    "complexity": "High"
+  },
+  {
+    "id": 9,
+    "question": "What mathematical foundations do I need to understand both neural networks and support vector machines, and where do they overlap?",
+    "category": "Foundational Knowledge Overlap",
+    "why_graph_rag_better": "Graph RAG can identify shared mathematical foundations (linear algebra, optimization, calculus) between different ML algorithms.",
+    "expected_graph_advantage": "Shows the common mathematical substrate underlying different machine learning approaches.",
+    "complexity": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "How do the limitations of current AI systems (like hallucination in LLMs) relate to similar problems in other AI domains?",
+    "category": "Cross-Domain Problem Patterns",
+    "why_graph_rag_better": "Graph RAG can connect similar problems across domains (hallucination in LLMs, adversarial examples in CV, spurious correlations in ML).",
+    "expected_graph_advantage": "Identifies recurring patterns and fundamental challenges that appear across different AI systems.",
+    "complexity": "High"
+  },
+  {
+    "id": 11,
+    "question": "What are all the ways that reinforcement learning concepts apply outside of game-playing scenarios?",
+    "category": "Concept Transfer",
+    "why_graph_rag_better": "Graph RAG can identify concept transfers and applications of RL principles across diverse domains (robotics, finance, healthcare, etc.).",
+    "expected_graph_advantage": "Shows the breadth of applications for RL concepts beyond the most famous examples.",
+    "complexity": "Medium"
+  },
+  {
+    "id": 12,
+    "question": "If I understand how attention mechanisms work in transformers, what other AI architectures use similar concepts, and how do they differ?",
+    "category": "Architectural Pattern Reuse",
+    "why_graph_rag_better": "Graph RAG can trace how attention concepts appear in different architectures (transformers, memory networks, neural Turing machines).",
+    "expected_graph_advantage": "Maps the reuse and adaptation of core concepts across different neural architectures.",
+    "complexity": "High"
+  }
+]
