@@ -56,7 +56,30 @@ A comprehensive Python system for comparing three knowledge-driven QA/retrieval 
 - Docker and Docker Compose
 - At least 8GB RAM recommended
 
-### 1. Clone and Setup
+### 🚀 **Option 1: Automated Setup (Recommended)**
+
+**Windows:**
+```bash
+# Complete setup and pipeline execution
+dev_setup.bat                 # One-time setup
+docker_services.bat start     # Start services (optional)
+run_full_pipeline.bat         # Execute full pipeline
+```
+
+**Unix/Linux:**
+```bash
+# Make scripts executable and run setup
+chmod +x *.sh
+./dev_setup.sh                # One-time setup
+./docker_services.sh start    # Start services (optional)
+./run_full_pipeline.sh        # Execute full pipeline
+```
+
+> 📖 **See [SCRIPTS_USAGE_GUIDE.md](SCRIPTS_USAGE_GUIDE.md) for comprehensive automation guide**
+
+### 🔧 **Option 2: Manual Setup**
+
+#### 1. Clone and Setup
 
 ```bash
 git clone <repository-url>
