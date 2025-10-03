@@ -117,6 +117,35 @@ The Streamlit dashboard provides a comprehensive web interface for testing and c
 
 **📖 Complete Guide**: See [`STREAMLIT_GUIDE.md`](STREAMLIT_GUIDE.md) for detailed documentation
 
+## 🕸️ **Graph Visualization**
+
+Explore the complexity and structure of your knowledge graphs with an interactive visualization tool.
+
+### **🚀 Launch Graph Visualizer**
+```bash
+# Windows
+.\run_graph_visualizer.bat
+
+# Unix/Linux  
+./run_graph_visualizer.sh
+```
+**Visualizer URL**: [http://localhost:8502](http://localhost:8502)
+
+### **📊 What You Can Visualize**
+- **🧠 AI Knowledge Graphs**: Core concepts, technologies, and applications
+- **📄 Document Networks**: Content similarity and topic relationships
+- **👥 Entity Graphs**: Complex organizational and technology relationships
+- **🕸️ Neo4j Integration**: Live knowledge graph exploration (when Docker services are running)
+
+### **🔍 Key Features**
+- **Interactive network visualization** with drag, zoom, and hover details
+- **Complexity analysis** with metrics scoring (1-10 scale)
+- **Node exploration** with detailed relationship mapping
+- **Real-time Neo4j integration** for production graph analysis
+- **Multiple complexity levels** from simple to enterprise-scale networks
+
+**📖 Complete Guide**: See [`GRAPH_VISUALIZER_GUIDE.md`](GRAPH_VISUALIZER_GUIDE.md) for detailed documentation
+
 ## Architecture
 
 ```
