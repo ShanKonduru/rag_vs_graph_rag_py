@@ -1,20 +1,27 @@
-# RAG vs Graph RAG vs Knowledge Graph System
+# 🧠 RAG vs Graph RAG vs Knowledge Graph System
 
-A comprehensive Python system for comparing three knowledge-driven QA/retrieval approaches:
+A comprehensive Python system for comparing three knowledge-driven QA/retrieval approaches with production-ready automation scripts and detailed evaluation framework.
 
-1. **Standard RAG**: Traditional Retrieval-Augmented Generation using vector stores
-2. **Graph RAG**: Hybrid approach combining vector retrieval with graph-structured context
-3. **Knowledge Graph Only**: Pure graph-based retrieval using Neo4j
+## 🎯 **System Overview**
 
-## Features
+| Method | Description | Best For |
+|--------|-------------|----------|
+| **🔍 Standard RAG** | Traditional Retrieval-Augmented Generation using vector stores | Large-scale factual Q&A with speed requirements |
+| **🕸️ Graph RAG** | Hybrid approach combining vector retrieval with graph-structured context | Complex knowledge domains requiring relationship understanding |
+| **📊 Knowledge Graph Only** | Pure graph-based retrieval using Neo4j | Structured queries with explainable reasoning paths |
+
+## ✨ Features
 
 - 🔍 **Multiple Retrieval Methods**: Compare RAG, Graph RAG, and KG-only approaches
-- 📚 **Document Ingestion**: Support for PDF, HTML, Markdown, DOCX, and text files
-- 🚀 **Local-First**: Uses local Ollama LLM and vector stores (no cloud dependencies)
+- 📚 **Rich Document Processing**: Support for PDF, HTML, Markdown, DOCX, and text files
+- 🚀 **Local-First Architecture**: Uses local Ollama LLM and vector stores (no cloud dependencies)
 - 📊 **Comprehensive Evaluation**: Multiple metrics including BLEU, ROUGE-L, F1, and Exact Match
 - 🔧 **Modular Architecture**: Easily extensible and configurable
 - 📈 **Experiment Framework**: Grid search and automated evaluation pipeline
 - 🐳 **Docker Support**: Easy setup with Docker Compose
+- ⚡ **Automation Scripts**: Windows `.bat` and Unix `.sh` scripts for complete workflow automation
+- 📖 **Enhanced Knowledge Base**: Comprehensive AI documentation with modern concepts (Gen AI, Agentic AI, etc.)
+- 🔄 **Production Ready**: Complete CI/CD pipeline with comprehensive documentation
 
 ## Architecture
 
