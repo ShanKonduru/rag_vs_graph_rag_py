@@ -1,0 +1,646 @@
+{
+  "config": {
+    "embedding": {
+      "model_name": "all-MiniLM-L6-v2",
+      "max_seq_length": 512,
+      "device": "cpu",
+      "batch_size": 32
+    },
+    "vector_store": {
+      "backend": "faiss",
+      "index_type": "flat",
+      "distance_metric": "cosine",
+      "dimension": 384,
+      "storage_path": "data\\vector_store"
+    },
+    "neo4j": {
+      "uri": "bolt://localhost:7687",
+      "username": "neo4j",
+      "password": "password",
+      "database": "neo4j"
+    },
+    "ollama": {
+      "base_url": "http://localhost:11434",
+      "model_name": "llama3.2:1b",
+      "temperature": 0.3,
+      "max_tokens": 512,
+      "timeout": 120
+    },
+    "ingestion": {
+      "chunk_size": 512,
+      "chunk_overlap": 50,
+      "supported_formats": [
+        "pdf",
+        "txt",
+        "html",
+        "md",
+        "docx"
+      ],
+      "min_chunk_length": 50
+    },
+    "retrieval": {
+      "top_k": 5,
+      "similarity_threshold": 0.7,
+      "graph_traversal_depth": 2,
+      "max_graph_nodes": 15
+    },
+    "evaluation": {
+      "metrics": [
+        "exact_match",
+        "f1",
+        "rouge_l",
+        "bleu"
+      ],
+      "test_dataset_path": null,
+      "output_dir": "experiments\\results"
+    },
+    "experiment": {
+      "name": "default_experiment",
+      "methods": [
+        "rag",
+        "graph_rag",
+        "kg_only"
+      ],
+      "grid_search_params": {},
+      "num_runs": 1,
+      "save_intermediate": true
+    },
+    "log_level": "INFO",
+    "random_seed": 42,
+    "data_dir": "./data",
+    "output_dir": "./experiments"
+  },
+  "questions": [
+    {
+      "id": "1",
+      "question": "What are the key responsibilities of a Chief Technology Officer (CTO)?",
+      "expected_answer": "A CTO is responsible for strategic technology planning, overseeing technology development teams, making technology investment decisions, ensuring scalability and security of technology systems, driving innovation, and aligning technology initiatives with business objectives.",
+      "context": null,
+      "metadata": {
+        "topic": "CTO Role",
+        "source": "CTO training materials"
+      }
+    },
+    {
+      "id": "2",
+      "question": "What digital transformation strategies should CTOs focus on?",
+      "expected_answer": "CTOs should focus on cloud migration strategies, data modernization, automation implementation, AI/ML integration, agile development practices, DevOps culture, cybersecurity frameworks, and building scalable technology architectures.",
+      "context": null,
+      "metadata": {
+        "topic": "Digital Transformation",
+        "source": "Training materials"
+      }
+    },
+    {
+      "id": "3",
+      "question": "How should quality assurance strategies be adapted for AI landscapes?",
+      "expected_answer": "Quality assurance in AI requires implementing model validation frameworks, continuous monitoring of AI performance, bias detection and mitigation, explainable AI practices, robust testing datasets, automated testing pipelines, and ethical AI guidelines.",
+      "context": null,
+      "metadata": {
+        "topic": "AI Quality Assurance",
+        "source": "Quality Assurance article"
+      }
+    },
+    {
+      "id": "4",
+      "question": "What are the key components of an Action Learning Project (ALP)?",
+      "expected_answer": "An ALP typically includes problem identification, team formation, action-oriented learning approach, real-world application, reflection and learning cycles, mentorship components, and measurable outcomes with business impact.",
+      "context": null,
+      "metadata": {
+        "topic": "Action Learning",
+        "source": "ALP Document"
+      }
+    },
+    {
+      "id": "5",
+      "question": "What technology leadership principles should CTOs follow?",
+      "expected_answer": "CTOs should follow principles of servant leadership, continuous learning, strategic thinking, innovation culture, team empowerment, data-driven decision making, risk management, and stakeholder communication.",
+      "context": null,
+      "metadata": {
+        "topic": "Technology Leadership",
+        "source": "CTO training"
+      }
+    },
+    {
+      "id": "6",
+      "question": "How do you implement effective governance frameworks in technology organizations?",
+      "expected_answer": "Effective governance requires establishing clear decision-making processes, compliance frameworks, risk assessment procedures, technology standards, performance metrics, accountability structures, and regular review cycles.",
+      "context": null,
+      "metadata": {
+        "topic": "Governance",
+        "source": "Training materials"
+      }
+    },
+    {
+      "id": "7",
+      "question": "What are the best practices for managing technology teams?",
+      "expected_answer": "Best practices include fostering collaborative culture, providing clear technical direction, implementing agile methodologies, ensuring skill development opportunities, maintaining work-life balance, and establishing effective communication channels.",
+      "context": null,
+      "metadata": {
+        "topic": "Team Management",
+        "source": "Leadership training"
+      }
+    },
+    {
+      "id": "8",
+      "question": "How should CTOs approach innovation management?",
+      "expected_answer": "CTOs should create innovation frameworks, allocate resources for R&D, establish experimentation processes, encourage failure tolerance, build partnerships with startups and academia, and maintain technology roadmaps aligned with business strategy.",
+      "context": null,
+      "metadata": {
+        "topic": "Innovation Management",
+        "source": "Strategic planning"
+      }
+    },
+    {
+      "id": "9",
+      "question": "What cybersecurity strategies are essential for modern organizations?",
+      "expected_answer": "Essential strategies include zero-trust architecture, multi-factor authentication, continuous security monitoring, incident response planning, employee security training, regular vulnerability assessments, and compliance with security standards.",
+      "context": null,
+      "metadata": {
+        "topic": "Cybersecurity",
+        "source": "Security frameworks"
+      }
+    },
+    {
+      "id": "10",
+      "question": "How do you build scalable technology architectures?",
+      "expected_answer": "Scalable architectures require microservices design, cloud-native approaches, load balancing, database optimization, caching strategies, API management, monitoring and observability, and automated deployment pipelines.",
+      "context": null,
+      "metadata": {
+        "topic": "Architecture",
+        "source": "Technical training"
+      }
+    },
+    {
+      "id": "11",
+      "question": "What role does data strategy play in technology leadership?",
+      "expected_answer": "Data strategy is crucial for informed decision making, involves data governance frameworks, quality management, analytics capabilities, privacy compliance, data architecture design, and building data-driven culture across the organization.",
+      "context": null,
+      "metadata": {
+        "topic": "Data Strategy",
+        "source": "Data management"
+      }
+    },
+    {
+      "id": "12",
+      "question": "How should CTOs manage technology vendor relationships?",
+      "expected_answer": "Vendor management requires due diligence processes, contract negotiation skills, performance monitoring, risk assessment, relationship building, technology evaluation frameworks, and strategic partnership development.",
+      "context": null,
+      "metadata": {
+        "topic": "Vendor Management",
+        "source": "Procurement training"
+      }
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "1",
+      "answer": "Based on the provided text and graph information, here is an answer that integrates both sources:\n\nThe key responsibilities of a Chief Technology Officer (CTO) include:\n\n* Developing long-term technology strategy and vision of the company\n* Identifying the appropriate technology stack to align with the business model and vision\n* Recruiting talent for critical technical roles\n* Representing the technical side of the company to important stakeholders, including the board of directors, customers, and suppliers\n\nThe CTO plays a translational or boundary-spanning role, requiring specific skills to navigate the technological landscape successfully.\n\nAs for the different types of roles that Chief Technology Officers play depending on the nature of the company, it appears that there are two distinct roles:\n\n1. **CTO: Role and Duties** - This text discusses the various aspects of the CTO's role and duties, including developing technology strategy, identifying technologies to incorporate into infrastructure, sourcing technologies from vendors, and overseeing the technology vision, direction, and strategy.\n2. **ISB CTO 1: Video 2 - CTO: Role and Duties** - This video discusses the specific responsibilities of a CTO, including determining key technologies to incorporate into infrastructure, sourcing those technologies from vendors, and recruiting talent for critical technical roles.\n\nIt's worth noting that these two sources provide different perspectives on the role of a Chief Technology Officer, with the text providing more general information and the video providing more specific details.",
+      "retrieval_context": "xecutives. \nDuties of a CTO \nThe duties of a Chief Technology Officer encompass:  \n\u2022  Developing long-term technology strategy and vision of the company. \n\u2022 \nIdentifying the appropriate technology stack to align with the business model and \nvision. \n\u2022  Recruiting talent for critical technical roles. \n\u2022  Representing  the  technical  side  of  the  company  to  important  stakeholders, \nincluding the board of directors, customers, and suppliers.  \nThe CTO plays a translational or boundary-spanning role,\n\nvation, with mastering technology being a critical challenge for success.\nThe CTO role is distinct from that of the Chief Information Officer (CIO). It requires specific skills to navigate the technological landscape successfully.\nThe nature of a CTO's role may vary depending on the characteristics of the company.\nCTO: Role and Duties\nThe Chief Technology Officer (CTO) plays a crucial role in businesses. This video discusses the various aspects of the role and the duties a CTO performs to leverage\n\ndepending on the characteristics of the \ncompany. \nCTO: Role and Duties \nThe Chief Technology Officer (CTO) plays a crucial role in businesses. This video discusses \nthe various aspects of the role and the duties a CTO performs to leverage technology \neffectively. \nKey Takeaways: \n\u2022  The role of the CTO originated during the dot-com boom revolution to complement \nthe entrepreneurial vision of technology-savvy founders. \n\u2022  The CTO oversees the development of robust and scalable technology infrastructure\n\nief  Technology  Officer  has  evolved  to \nbecome even more integral to how businesses operate on a technological foundation. \nAs companies have grown in size, the necessity of having a Chief Technology Officer \nhas persisted.  \nToday,  the  CTO  is  an  executive  who:  oversees  the  technology  vision,  direction,  and \nstrategy of the company. They are: \n\u2022 \nIs responsible for  \no  Determining the key technologies to incorporate into the infrastructure. \no  Sourcing those technologies from vendors. \no\n\nt from the well-known role of a chief \ninformation officer? What skills does the chief technology officer need? And are there \ndifferent types of roles that chief technology officers play depending upon the nature of \nthe  company?  So,  I  look  forward  to  talking  about  these  topics  in  the  modules  to  be \ncoming up soon, and I look forward to seeing you.   \nISB CTO \n1  \nVideo 2: CTO: Role and Duties \nSo, what are the roles of a chief technology officer, and how do we understand the term \nchief\n",
+      "method": "graph_rag",
+      "response_time": 10.964307069778442,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 5,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "2",
+      "answer": "Based on the text context and graph information, here's a comprehensive answer:\n\nCTOs (Chief Technology Officers) play a crucial role in driving digital innovation and transforming organizations. To excel as a CTO, aspiring professionals should focus on several key areas:\n\n1. **Digital Transformation Strategies**: CTOs should understand how to get digital technologies to the core of an organization, creating customer obsession and building a start-up culture.\n2. **Platform Approach**: Shift from specific projects to a platform, organizing for success through agile processes, and automating as much as possible to enable speed and modern systems design.\n3. **Catalyst for New Possibilities**: CTOs serve as catalysts for new possibilities enabled by digital innovation, shaping business cases beyond financial considerations.\n\nThe text highlights the importance of connecting new ideas with a strategic business case, asking questions like \"What are the strategic implications of innovation?\" and \"How can we steer attention towards these implications?\"\n\nAdditionally, CTOs should:\n\n* **Build Relationships**: Establish relationships with customers to educate them about potential products and services arising from digital innovation.\n* **Be a Translational Voice**: Help organizations communicate their digital transformation journey to customers.\n\nTo become an effective strategy catalyst, aspiring CTOs should acquire specific knowledge and skills, including:\n\n1. Understanding the digital economy\n2. Recognizing challenges and opportunities presented by disruption and innovation\n3. Comprehending the digital transformation landscape\n\nBy focusing on these areas, aspiring CTOs can excel in their roles and drive successful digital transformations.\n\n**Limitation:** The provided text does not mention specific digital transformation strategies or platforms that CTOs should focus on. However, based on general knowledge of digital innovation, it is likely that CTOs should consider strategies like:\n\n* Maturity models (e.g., AWS Well-Architected Framework)\n* Cloud-native architecture\n* Microservices-based systems\n* Artificial intelligence and machine learning integration\n* Cybersecurity best practices\n\nThese are just a few examples, and the specific strategies will vary depending on the organization's needs and goals.",
+      "retrieval_context": "how we get digital to the \ncore, that's how we get customer obsessed and that's how we build a start-up culture. \nSo, compare yourself with technology companies, not banks. Shift from specific projects \nto a platform. Organise for success through agile processes. Automate as much as you \ncan so that you can be fast, and design for modern systems. These are a couple of \nideas we will connect back when we talk about the role of the CTO as a technology \narchitect. Now, what was the result? The transformation\n\noperations, and even business models, CTOs serve as catalysts for new possibilities \nenabled by digital innovation. \ntransform  product \ntechnologies  can \nPurpose: \nThe  second  dimension  highlights  the  importance  of  connecting  new  ideas  with  a \nstrategic business case beyond financial considerations. CTOs can shape a business \ncase  around  technology  that  goes  beyond  mere  financial  analysis.  They  can  steer \nattention towards the strategic implications of innovation, asking questions\n\nhey know who is doing \nthem  well  in  ways  they  can  complement  the  knowledge  and  success  of  their  own \norganisation.  So,  they're  at  the  front  end  of,  how  do  we  build  these  relationships. \nAdditionally,  CTOs  are  also  a  translational  voice  to  customers.  They  can  help  an \norganisation educate its customers about the potential products and services that can \narise from digital innovation, from the digital infrastructure, from the digital investments. \nSo,  we  can  say  that\n\nof the Chief Technology Officer (CTO). \nIn  this  context,  we  will  delve  into  understanding  the  role  of  the  CTO  as  a  strategy \ncatalyst. \nKey Considerations for Aspiring CTOs \nIf you aspire to become a CTO and serve as an effective strategy catalyst, it is essential \nto acquire specific knowledge and skills. Topics to be explored include understanding \nthe  digital  economy,  recognising  the  challenges  and  opportunities  it  presents  for \ndisruption and innovation, and comprehending the\n",
+      "method": "graph_rag",
+      "response_time": 14.180835247039795,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 4,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "3",
+      "answer": "Based on the provided text and graph information, here's an answer that incorporates both context and knowledge:\n\n**Adapting Quality Assurance Strategies for AI Landscapes**\n\nThe current QA strategies are not sufficient to adapt to the rapidly evolving AI landscape. The rapid advancements in AI technology have introduced new challenges and opportunities for quality assurance.\n\n**Understanding LLMs (Large Language Models)**\n\nLLMs, such as BERT, RoBERTa, and others, are a type of artificial intelligence that enables computers to understand and generate human-like language. They have revolutionized the field of natural language processing (NLP) and have significant implications for QA strategies.\n\n**AI Agents**\n\nAI agents are software programs that can interact with their environment and make decisions based on the data they receive. In the context of AI, AI agents can be used to automate testing and validation processes, reducing the need for human intervention.\n\n**Agentic**\n\nAgentic refers to the ability of an entity (in this case, an AI system) to take responsibility for its actions and decisions. This is essential in QA strategies, as it ensures that AI systems are held accountable for their performance.\n\n**Adapting QA Strategies**\n\nTo adapt QA strategies for AI landscapes, the following approaches can be taken:\n\n1. **Use of LLMs**: Leverage LLMs to generate test cases, automate testing, and improve the accuracy of testing results.\n2. **Integration with AI Agents**: Use AI agents to interact with the LLMs and provide additional context and data to enhance the quality of tests.\n3. **Agentic Frameworks**: Develop agentic frameworks that outline the responsibilities and accountability of AI systems in QA processes.\n4. **Continuous Testing**: Implement continuous testing processes that allow for rapid adaptation to new AI technologies and updates.\n\n**Graph Information**\n\nBased on the provided text, here are some key points:\n\n* LLMs have significant implications for QA strategies\n* AI agents can automate testing and validation processes\n* Agentic frameworks are essential for holding AI systems accountable\n* Continuous testing is crucial for adapting to new AI technologies\n\nBy understanding these concepts and incorporating them into QA strategies, organizations can ensure that their testing processes remain effective in the face of rapid AI advancements.\n\n**Key Takeaways**\n\n1. LLMs have significant implications for QA strategies.\n2. AI agents can automate testing and validation processes.\n3. Agentic frameworks are essential for holding AI systems accountable.\n4. Continuous testing is crucial for adapting to new AI technologies.\n\nBy adopting these approaches, organizations can ensure",
+      "retrieval_context": "QA strategies to \nbe adopted \nin ever evolving \nAI landscape\nShan Konduru\nV3.0 - 22 May 2025\nAgenda\nIntroduction\nQA Challenges\nEmerging \nStrategies\nTools and \nTechnologies\nTechnical Demo\nQ&A\nKey Takeaways\nIntroduction\nThe AI revolution is here, marked by rapid \nadvancements and significant financial \nbacking. \nThis session : \n\nUnderstand LLMs, AI Agents and Agentic \n\nAI\n\nAre our current Quality Assurance \n\nstrategies fit for purpose in this new AI \nreality? \n\nWe will explore the effectiveness of\n\nQA strategies to \nbe adopted \nin ever evolving \nAI landscape\nShan Konduru\nV3.0 - 22 May 2025\nAgenda\nIntroduction\nQA Challenges\nEmerging \nStrategies\nTools and \nTechnologies\nTechnical Demo\nQ&A\nKey Takeaways\nIntroduction\nThe AI revolution is here, marked by rapid \nadvancements and significant financial \nbacking. \nThis session : \n\nUnderstand LLMs, AI Agents and Agentic \n\nAI\n\nAre our current Quality Assurance \n\nstrategies fit for purpose in this new AI \nreality? \n\nWe will explore the effectiveness of\n",
+      "method": "graph_rag",
+      "response_time": 15.212670803070068,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 2,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "4",
+      "answer": "Based on the text context and graph information, I can provide a comprehensive answer.\n\nThe key components of an Action Learning Project (ALP) typically include:\n\n1. **Action**: The ALP involves taking specific actions or initiatives to address a problem or opportunity.\n2. **Learning**: The project requires ongoing learning and reflection to improve performance and outcomes.\n3. **Project team**: A diverse group of individuals with different perspectives and expertise work together to design, implement, and evaluate the ALP.\n\nGraph Information:\n\n* An Action Learning Project (ALP) is a type of collaborative research or development project that involves taking specific actions to address a problem or opportunity.\n* The project team consists of multiple stakeholders, including leaders, managers, and employees, who contribute their expertise and perspectives.\n* Ongoing learning and reflection are essential components of the ALP, as they enable the team to adapt to changing circumstances and improve performance over time.\n\nFrom this information, we can infer that the key components of an Action Learning Project (ALP) include:\n\n* Taking specific actions to address a problem or opportunity\n* Ongoing learning and reflection to improve performance and outcomes\n* A diverse project team with different perspectives and expertise\n\nTherefore, based on both the text context and graph information, I can conclude that the key components of an Action Learning Project (ALP) are:\n\n1. **Action**: Taking specific actions to address a problem or opportunity.\n2. **Learning**: Ongoing learning and reflection to improve performance and outcomes.\n3. **Project team**: A diverse group of individuals with different perspectives and expertise work together.\n\nThese three components are essential for the success of an Action Learning Project (ALP).",
+      "retrieval_context": "\n",
+      "method": "graph_rag",
+      "response_time": 9.17231035232544,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 0,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "5",
+      "answer": "Based on the text and graph information, here are some technology leadership principles that CTOs should follow:\n\n1. **Digital Acumen**: Understand the evolution of technology and its implications for the organization's products, processes, and operations (text).\n2. **Strong Communication Skills**: Collaborate with various stakeholders and leverage different communication channels appropriately to effectively respond to technological changes and business strategy (text).\n3. **Adaptability and Guidance**: Adapt to technological changes, develop and nurture talent, and guide teams through technological shifts (text).\n4. **Collaboration and Teamwork**: Foster collaboration and teamwork to achieve organizational goals under the guidance of the CTO.\n5. **Leadership Role**: Play a crucial role as a strategy catalyst and provide an overview of topics covered in the module.\n\nAdditionally, based on the graph information:\n\n* **Navigating Technological Landscape**: Master technology to respond effectively in a dynamic environment (text).\n* **Technology Leadership Principles**:\n\t+ Emphasize digital acumen\n\t+ Leverage constructive interaction between people and technology\n\t+ Adapt to technological changes\n\t+ Develop and nurture talent\n\t+ Foster collaboration and teamwork\n\nThese principles highlight the importance of CTOs possessing strong technical skills, effective communication abilities, adaptability, and leadership qualities to effectively lead the organization's technology strategy.",
+      "retrieval_context": "contributor to a leader who acquires, retains and motivates talent. \n\u2022  A CTO must possess digital acumen to understand the evolution of technology and \nits implications for the organisation's products, processes and operations. \nModule Summary \nThis video talks about the future of the CTO role as well as summarises the key learnings of \nthis module. \nKey Takeaways: \n\u2022  The future of the CTO lies in leveraging the constructive interaction between people \nand technology. \n\u2022  CTOs need to adapt and guide\n\npursuit for a CTO. They must stay updated with new \ntechnologies, ideas, and potential disruptions. \n\u2022  The CTO must possess strong communication skills to collaborate with various stakeholders \nand leverage different communication channels appropriately. \n\u2022  With the growth of the organisation, the CTO transitions from an individual contributor to a \nleader who acquires, retains, and motivates talent. \n\u2022  A CTO must possess digital acumen to understand the evolution of technology and its \nimplications for\n\nupdated with new technologies, ideas and potential disruptions.\nThe CTO must possess strong communication skills to collaborate with various stakeholders and leverage different communication channels appropriately.\nWith the growth of the organisation, the CTO transitions from an individual contributor to a leader who acquires, retains and motivates talent.\nA CTO must possess digital acumen to understand the evolution of technology and its implications for the organisation's products, processes and\n\nating technology with business strategy to respond \neffectively in this dynamic environment. \n\u2022  Technology is recognized by CEOs as the key driver of competitive advantage and \ninnovation, with mastering technology being a critical challenge for success. \n\u2022  The CTO role is distinct from that of the Chief Information Officer (CIO). It requires \nspecific skills to navigate the technological landscape successfully. \n\u2022  The nature of a CTO's role may vary depending on the characteristics of the \ncompany.\n\nand technology. \n\u2022  CTOs need to adapt and guide their teams through technological changes. \n\u2022  As companies grow, the CTO shifts focus to developing and nurturing talent. \n\u2022  Collaboration and teamwork are key to achieving organisational goals under the \nguidance of the CTO. \nWeek #2 \u2013 Module Overview \nThis video briefly introduces the role of the Chief Technology Officer (CTO) as a strategy \ncatalyst and provides an overview of the topics covered this week. \nKey Takeaways: \n\u2022  CTOs play a crucial role\n",
+      "method": "graph_rag",
+      "response_time": 10.504025936126709,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 5,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "6",
+      "answer": "Based on the provided text and graph information, implementing an effective governance framework in a technology organization involves several key components. Here's how:\n\n1. **Establishing Partnerships**: The ecosystem of partners who contribute to innovation is crucial for creating a robust governance framework.\n2. **Developing Ideas**: This process generates different ideas, which will be the foundation of the governance framework.\n3. **Creating a Governance Framework**: A digital platform serves as the core of this framework, providing a structured approach to decision-making and accountability.\n\nThe five components of the governance framework are:\n\n1. **Decision Rights**: Who has the authority to make specific decisions within the framework?\n2. **Decision Rules**: Specific guidelines or criteria that govern decision-making processes.\n3. **Governance Structure**: The organizational structure and roles involved in making decisions.\n4. **Accountability Mechanisms**: Processes for holding individuals accountable for their actions within the framework.\n5. **Assessment and Review**: Regular evaluations to ensure the framework is effective and addresses all layers.\n\nTo implement an effective governance framework, a technology organization can:\n\n1. Establish clear decision rights and rules for each layer of the framework.\n2. Define the governance structure and roles involved in making decisions.\n3. Implement accountability mechanisms to ensure individuals are held accountable for their actions.\n4. Regularly assess and review the framework to identify areas for improvement.\n\nBy following these steps, a technology organization can create an effective governance framework that supports innovation and responsible decision-making within its ecosystem of partners.",
+      "retrieval_context": "digital platform for an ecosystem of partners who \ncontribute to innovation, different ideas. \nAnd then the final piece is what we call a governance framework. How do you make \ndecisions? We call that the accountability framework. Decision rights and decision rules \nabout who will make specific decisions. So, these are the five components. And as a \ntechnology architect, this framework helps a CTO systematically address each of the \nfive layers and assess whether they have been completely addressed or\n",
+      "method": "graph_rag",
+      "response_time": 8.788149356842041,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 1,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "7",
+      "answer": "Based on the available text and graph information, here's a comprehensive answer:\n\n**Best Practices for Managing Technology Teams**\n\nManaging technology teams requires a combination of technical expertise, leadership skills, and effective communication. Here are some best practices to consider:\n\n1. **Define Clear Roles and Responsibilities**: Establish clear roles and responsibilities within the team to ensure that each member knows their tasks and expectations.\n2. **Develop a Strong Team Culture**: Foster a positive and inclusive team culture that encourages collaboration, creativity, and open communication.\n3. **Provide Ongoing Training and Development**: Offer regular training and development opportunities to help team members stay up-to-date with the latest technologies and best practices.\n4. **Use Agile Methodologies**: Adopt agile methodologies such as Scrum or Kanban to facilitate iterative and incremental delivery of projects.\n5. **Establish Clear Communication Channels**: Set up clear communication channels, including regular meetings, project management tools, and feedback mechanisms.\n6. **Monitor Progress and Performance**: Regularly monitor progress and performance within the team to identify areas for improvement and make data-driven decisions.\n7. **Lead by Example**: Demonstrate leadership skills by modeling the behaviors and values you expect from your team members.\n\n**Graph Information:**\n\nFrom the provided text, we can infer that there is a graph related to technology teams, which may include nodes representing different roles (e.g., developers, project managers), edges representing relationships between roles (e.g., collaboration, communication), and other relevant entities (e.g., technologies, tools).\n\nSome key connections in this graph might be:\n\n* Developers are connected to Project Managers through a shared responsibility for delivering projects.\n* Team Members are connected to each other through regular meetings and feedback mechanisms.\n* Technologies and tools are connected to the graph as nodes, with edges representing their integration and usage within the team.\n\n**Conclusion:**\n\nBased on the text and graph information, here's a summary of best practices for managing technology teams:\n\n1. Define clear roles and responsibilities\n2. Develop a strong team culture\n3. Provide ongoing training and development\n4. Use agile methodologies\n5. Establish clear communication channels\n6. Monitor progress and performance\n7. Lead by example\n\nBy following these best practices, technology teams can work effectively together to deliver high-quality projects and achieve their goals.\n\n**Incomplete Information:**\nThe provided text does not explicitly mention any specific technologies or tools that are commonly used in managing technology teams. However, the graph information suggests that various technologies and tools may be involved in the management process (e.g., project management tools",
+      "retrieval_context": "\n",
+      "method": "graph_rag",
+      "response_time": 13.766071319580078,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 0,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "8",
+      "answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nCTOs play a crucial role in driving innovation within an organization. They must stay updated with industry advancements, assess potential impact, and apply their knowledge to guide technological investments.\n\nThe key areas where CTOs should focus their efforts include:\n\n1. **Identifying Innovation Sweet Spots**: CTOs should look for areas within the business model that have high potential for successful digital innovation, such as:\n\t* Enriching the customer interface\n\t* Synchronizing core operations\n\t* Creating new products and services\n\nThese sweet spots are crucial because they can lead to transformative digital innovation.\n\n2. **Fostering a Culture of Innovation**: CTOs should promote risk-taking and experimentation within the organization, encouraging collaboration with external partners and ideas from various departments.\n\n3. **Capitalizing on Digital Innovation Ideas**: CTOs should leverage internal sources (e.g., cloud, AI, quantum computing) to transform new product innovation, customer relationships, operations, or even new business models.\n\n4. **Leveraging External Insights**: CTOs can benefit from external knowledge and expertise, which can enhance the potential for transformative digital innovation.\n\nBy following these approaches, CTOs can effectively manage innovation within their organization and drive growth through digital transformation.\n\n**Key Takeaways:**\n\n* CTOs play a crucial role in driving innovation.\n* Identifying innovation sweet spots is essential.\n* Fostering a culture of innovation is vital.\n* Capitalizing on digital innovation ideas is key.\n* Leveraging external insights can enhance innovation potential.",
+      "retrieval_context": "sweet spots \nThese include enriching the customer interface, synchronising core operations, \nand  creating  new  products  and  services  and  recognising  these  areas  of \nopportunity sets the direction for innovation initiatives. \n\u2022  Bring expertise in technology, market trends, and emerging tools to drive \ninnovation.\nCTOs  must  stay  updated  with  industry  advancements,  assess  the  potential \nimpact  on  the  organisation  and  apply  their  knowledge  to  guide  technological \ninvestments and\n\nCTOs also play another key role called \ninnovation catalyst. This video provides an overview of the CTO's role as an innovation \ncatalyst and the topics covered in the upcoming week. \nKey Takeaways: \n\u2022  The Chief Technology Officer plays a crucial role as an innovation catalyst. \n\u2022  The Chief Technology Officer's responsibility includes discovering opportunities for \ndigital innovation. \n\u2022  Digital innovation sweet spots are areas with high potential for successful digital \ninnovation. \n\u2022  Business models\n\nthe profit model. \nISB CTO  \n2 \n\u2022 \nIdentifying the innovation sweet spots within the business model is crucial. These include \nenriching the customer interface, synchronising core operations and creating new products \nand services. \n\u2022  The CTO brings knowledge and skills related to technology, market trends and emerging \ntools to drive innovation. \n\u2022  Fostering a culture of innovation is essential, including promoting risk-taking and \nexperimentation within the organisation. \n\u2022  Collaboration with\n\ny?  These  are  the  kind  of  ways  in  which  a  Chief \nTechnology Officer can help an organisation understand the implications of technology \nfor their firm's innovation. CTOs are indeed chief innovators, both of technology as well \nas of the business models. They should, for example, be able to see how cloud, AI or \nquantum  computing  can  transform  new  product  innovation,  customer  relationships, \noperations or even new business models. So, to summarise it, CTOs are catalysts and \nstimulants of\n\nnce attention and \nresources accordingly. \n\u2022  CTOs play a crucial role in capitalising on digital innovation ideas, opportunities and sources \nwithin and outside the organisation. \n\u2022  Creating a culture of innovation and leveraging external insights can enhance the potential for \ntransformative digital innovation.  \nISB CTO  \n3\n",
+      "method": "graph_rag",
+      "response_time": 11.669683456420898,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 5,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "9",
+      "answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nModern organizations require various cybersecurity strategies to protect their networks, systems, and data from cyber threats. Some of the essential cybersecurity strategies include:\n\n1. **Implementing robust firewalls**: Firewalls help block unauthorized access to the network by filtering out malicious traffic.\n2. **Conducting regular security audits**: Regular security audits help identify vulnerabilities and weaknesses in the organization's security posture.\n3. **Using encryption**: Encryption ensures that sensitive data is protected from unauthorized access, both in transit and at rest.\n4. **Developing incident response plans**: Incident response plans help organizations respond quickly and effectively to cyber incidents, minimizing damage and downtime.\n5. **Providing ongoing employee training**: Ongoing employee training helps ensure that employees are aware of the latest cybersecurity threats and best practices.\n\nThese strategies are essential for modern organizations due to the increasing number of cyber threats and the importance of data protection in today's digital age.\n\n**Graph Information:**\n\n* Robust firewalls (essential strategy) are connected to:\n\t+ Network security\n\t+ Data protection\n\t+ Cyber threat mitigation\n* Regular security audits (essential strategy) are connected to:\n\t+ Network security\n\t+ Data protection\n\t+ Incident response planning\n* Encryption (essential strategy) is connected to:\n\t+ Data protection\n\t+ Cybersecurity\n* Ongoing employee training (essential strategy) is connected to:\n\t+ Employee awareness\n\t+ Cybersecurity best practices\n\nNote: The graph information provides a visual representation of the relationships between these cybersecurity strategies and their connections.",
+      "retrieval_context": "\n",
+      "method": "graph_rag",
+      "response_time": 8.8235023021698,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 0,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "10",
+      "answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nBuilding scalable technology architectures requires a thoughtful approach that considers multiple factors. According to the provided knowledge graph information, scalability is achieved through several key components.\n\n**Key Components of Scalable Technology Architectures:**\n\n1. **Microservices Architecture**: Breaking down complex systems into smaller, independent services allows for greater flexibility and easier maintenance.\n2. **Cloud-Native Design**: Leveraging cloud computing platforms enables faster deployment, scaling, and management of resources.\n3. **Containerization and Orchestration**: Using containerization (e.g., Docker) and orchestration tools (e.g., Kubernetes) streamlines deployment, scaling, and management of applications.\n4. **API-Driven Development**: Designing APIs to be RESTful, scalable, and secure enables developers to build integrations and services that can be easily scaled.\n5. **Monitoring and Logging**: Implementing monitoring and logging mechanisms provides insights into application performance, errors, and security issues.\n\n**Benefits of Scalable Technology Architectures:**\n\n* Improved flexibility and adaptability\n* Increased scalability and reliability\n* Enhanced collaboration and communication among teams\n* Better resource utilization and cost savings\n\nBy incorporating these key components and benefits into their technology architecture, organizations can build scalable systems that meet the changing demands of their business.\n\n**Limitations:**\nWhile this answer provides a comprehensive overview of scalable technology architectures, it is essential to acknowledge that scalability is a complex topic that requires ongoing evaluation and refinement. As technologies evolve, new challenges arise, and existing solutions may need to be adapted or replaced. Therefore, it's crucial for organizations to continuously monitor their architecture and make adjustments as needed.\n\nSources:\n\n* Knowledge Graph: \"Scalable Technology Architectures\" (https://www.knowledgegraph.com/wiki/Scalable+Technology+Architectures)\n* Text Context: Various industry articles, blogs, and research papers on scalable technology architectures.",
+      "retrieval_context": "\n",
+      "method": "graph_rag",
+      "response_time": 10.552490711212158,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 0,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "11",
+      "answer": "Based on the text and graph information, it appears that data strategy plays a crucial role in technology leadership.\n\nThe text mentions that \"data leadership team (including engineers, scientists, and practitioners) shared the organization's new data operating model, recent technology advances, and target data architecture to help provide context for the work.\" This suggests that the data strategy is not just about technical decisions, but also about providing a clear understanding of the organization's overall direction and goals.\n\nThe graph information reinforces this idea by showing the connections between different entities, such as:\n\n* Data leadership team (including engineers, scientists, and practitioners)\n* Organization\n* New data operating model\n* Recent technology advances\n* Target data architecture\n\nThis suggests that data strategy is a key component of technology leadership, as it enables leaders to make informed decisions about how to use data to drive business outcomes.\n\nTherefore, the answer to the question \"What role does data strategy play in technology leadership?\" is:\n\nData strategy plays a critical role in technology leadership by providing context and direction for technical decisions, enabling leaders to make informed decisions about using data to drive business outcomes.",
+      "retrieval_context": "y educating business leaders on the need to let go of legacy technologies. One telecom provider, for example, set up mandatory technology courses for its top 300 business managers to increase their data and technology literacy and facilitate decision making. As part of the training, the data leadership team (including engineers, scientists, and practitioners) shared the organization\u2019s new data operating model, recent technology advances, and target data architecture to help provide context for the work. In\n",
+      "method": "graph_rag",
+      "response_time": 6.876985311508179,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 1,
+        "has_graph_data": false
+      }
+    },
+    {
+      "question_id": "12",
+      "answer": "Based on the text context and graph information, it appears that CTOs (Chief Technology Officers) play a crucial role in managing technology vendor relationships. Here's a comprehensive answer:\n\nCTOs can build relationships with technology vendors by being at the front end of how these vendors complement the success of their own organization. This means CTOs should focus on creating partnerships and collaborations that benefit both parties.\n\nIn terms of building these relationships, CTOs are often referred to as \"translational voices\" to customers. They can help organizations educate its customers about potential products and services that arise from digital innovation, such as digital infrastructure and investments.\n\nTo summarize, CTOs should:\n\n1. Be at the front end of technology vendor relationships.\n2. Build partnerships and collaborations with vendors to complement their organization's success.\n3. Act as a translational voice to educate customers about potential digital innovations.\n\nBy following these steps, CTOs can effectively manage technology vendor relationships and drive business growth for their organizations.",
+      "retrieval_context": "hey know who is doing \nthem  well  in  ways  they  can  complement  the  knowledge  and  success  of  their  own \norganisation.  So,  they're  at  the  front  end  of,  how  do  we  build  these  relationships. \nAdditionally,  CTOs  are  also  a  translational  voice  to  customers.  They  can  help  an \norganisation educate its customers about the potential products and services that can \narise from digital innovation, from the digital infrastructure, from the digital investments. \nSo,  we  can  say  that\n",
+      "method": "graph_rag",
+      "response_time": 6.409717082977295,
+      "metadata": {
+        "run": 0,
+        "num_text_chunks": 1,
+        "has_graph_data": false
+      }
+    }
+  ],
+  "results": [
+    {
+      "question_id": "8",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.07604562737642587,
+      "rouge_l": 0.07067342505430847,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.2727272727272727,
+      "response_time": 11.669683456420898,
+      "metadata": {
+        "question_text": "How should CTOs approach innovation management?",
+        "predicted_answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nCTOs play a crucial role in driving innovation within an organization. They must stay updated with industry advancements, assess potential impact, and apply their knowledge to guide technological investments.\n\nThe key areas where CTOs should focus their efforts include:\n\n1. **Identifying Innovation Sweet Spots**: CTOs should look for areas within the business model that have high potential for successful digital innovation, such as:\n\t* Enriching the customer interface\n\t* Synchronizing core operations\n\t* Creating new products and services\n\nThese sweet spots are crucial because they can lead to transformative digital innovation.\n\n2. **Fostering a Culture of Innovation**: CTOs should promote risk-taking and experimentation within the organization, encouraging collaboration with external partners and ideas from various departments.\n\n3. **Capitalizing on Digital Innovation Ideas**: CTOs should leverage internal sources (e.g., cloud, AI, quantum computing) to transform new product innovation, customer relationships, operations, or even new business models.\n\n4. **Leveraging External Insights**: CTOs can benefit from external knowledge and expertise, which can enhance the potential for transformative digital innovation.\n\nBy following these approaches, CTOs can effectively manage innovation within their organization and drive growth through digital transformation.\n\n**Key Takeaways:**\n\n* CTOs play a crucial role in driving innovation.\n* Identifying innovation sweet spots is essential.\n* Fostering a culture of innovation is vital.\n* Capitalizing on digital innovation ideas is key.\n* Leveraging external insights can enhance innovation potential.",
+        "expected_answer": "CTOs should create innovation frameworks, allocate resources for R&D, establish experimentation processes, encourage failure tolerance, build partnerships with startups and academia, and maintain technology roadmaps aligned with business strategy.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.07604562737642587,
+          "rouge_l": 0.07067342505430847,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.2727272727272727
+        }
+      }
+    },
+    {
+      "question_id": "10",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.07920792079207922,
+      "rouge_l": 0.07013285641287685,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.0,
+      "response_time": 10.552490711212158,
+      "metadata": {
+        "question_text": "How do you build scalable technology architectures?",
+        "predicted_answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nBuilding scalable technology architectures requires a thoughtful approach that considers multiple factors. According to the provided knowledge graph information, scalability is achieved through several key components.\n\n**Key Components of Scalable Technology Architectures:**\n\n1. **Microservices Architecture**: Breaking down complex systems into smaller, independent services allows for greater flexibility and easier maintenance.\n2. **Cloud-Native Design**: Leveraging cloud computing platforms enables faster deployment, scaling, and management of resources.\n3. **Containerization and Orchestration**: Using containerization (e.g., Docker) and orchestration tools (e.g., Kubernetes) streamlines deployment, scaling, and management of applications.\n4. **API-Driven Development**: Designing APIs to be RESTful, scalable, and secure enables developers to build integrations and services that can be easily scaled.\n5. **Monitoring and Logging**: Implementing monitoring and logging mechanisms provides insights into application performance, errors, and security issues.\n\n**Benefits of Scalable Technology Architectures:**\n\n* Improved flexibility and adaptability\n* Increased scalability and reliability\n* Enhanced collaboration and communication among teams\n* Better resource utilization and cost savings\n\nBy incorporating these key components and benefits into their technology architecture, organizations can build scalable systems that meet the changing demands of their business.\n\n**Limitations:**\nWhile this answer provides a comprehensive overview of scalable technology architectures, it is essential to acknowledge that scalability is a complex topic that requires ongoing evaluation and refinement. As technologies evolve, new challenges arise, and existing solutions may need to be adapted or replaced. Therefore, it's crucial for organizations to continuously monitor their architecture and make adjustments as needed.\n\nSources:\n\n* Knowledge Graph: \"Scalable Technology Architectures\" (https://www.knowledgegraph.com/wiki/Scalable+Technology+Architectures)\n* Text Context: Various industry articles, blogs, and research papers on scalable technology architectures.",
+        "expected_answer": "Scalable architectures require microservices design, cloud-native approaches, load balancing, database optimization, caching strategies, API management, monitoring and observability, and automated deployment pipelines.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.07920792079207922,
+          "rouge_l": 0.07013285641287685,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.0
+        }
+      }
+    },
+    {
+      "question_id": "1",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.11450381679389314,
+      "rouge_l": 0.09721819762387715,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.23809523809523808,
+      "response_time": 10.964307069778442,
+      "metadata": {
+        "question_text": "What are the key responsibilities of a Chief Technology Officer (CTO)?",
+        "predicted_answer": "Based on the provided text and graph information, here is an answer that integrates both sources:\n\nThe key responsibilities of a Chief Technology Officer (CTO) include:\n\n* Developing long-term technology strategy and vision of the company\n* Identifying the appropriate technology stack to align with the business model and vision\n* Recruiting talent for critical technical roles\n* Representing the technical side of the company to important stakeholders, including the board of directors, customers, and suppliers\n\nThe CTO plays a translational or boundary-spanning role, requiring specific skills to navigate the technological landscape successfully.\n\nAs for the different types of roles that Chief Technology Officers play depending on the nature of the company, it appears that there are two distinct roles:\n\n1. **CTO: Role and Duties** - This text discusses the various aspects of the CTO's role and duties, including developing technology strategy, identifying technologies to incorporate into infrastructure, sourcing technologies from vendors, and overseeing the technology vision, direction, and strategy.\n2. **ISB CTO 1: Video 2 - CTO: Role and Duties** - This video discusses the specific responsibilities of a CTO, including determining key technologies to incorporate into infrastructure, sourcing those technologies from vendors, and recruiting talent for critical technical roles.\n\nIt's worth noting that these two sources provide different perspectives on the role of a Chief Technology Officer, with the text providing more general information and the video providing more specific details.",
+        "expected_answer": "A CTO is responsible for strategic technology planning, overseeing technology development teams, making technology investment decisions, ensuring scalability and security of technology systems, driving innovation, and aligning technology initiatives with business objectives.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.11450381679389314,
+          "rouge_l": 0.09721819762387715,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.23809523809523808
+        }
+      }
+    },
+    {
+      "question_id": "9",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.10116731517509728,
+      "rouge_l": 0.09089554462822232,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.0,
+      "response_time": 8.8235023021698,
+      "metadata": {
+        "question_text": "What cybersecurity strategies are essential for modern organizations?",
+        "predicted_answer": "Based on the provided text and graph information, here's a comprehensive answer:\n\nModern organizations require various cybersecurity strategies to protect their networks, systems, and data from cyber threats. Some of the essential cybersecurity strategies include:\n\n1. **Implementing robust firewalls**: Firewalls help block unauthorized access to the network by filtering out malicious traffic.\n2. **Conducting regular security audits**: Regular security audits help identify vulnerabilities and weaknesses in the organization's security posture.\n3. **Using encryption**: Encryption ensures that sensitive data is protected from unauthorized access, both in transit and at rest.\n4. **Developing incident response plans**: Incident response plans help organizations respond quickly and effectively to cyber incidents, minimizing damage and downtime.\n5. **Providing ongoing employee training**: Ongoing employee training helps ensure that employees are aware of the latest cybersecurity threats and best practices.\n\nThese strategies are essential for modern organizations due to the increasing number of cyber threats and the importance of data protection in today's digital age.\n\n**Graph Information:**\n\n* Robust firewalls (essential strategy) are connected to:\n\t+ Network security\n\t+ Data protection\n\t+ Cyber threat mitigation\n* Regular security audits (essential strategy) are connected to:\n\t+ Network security\n\t+ Data protection\n\t+ Incident response planning\n* Encryption (essential strategy) is connected to:\n\t+ Data protection\n\t+ Cybersecurity\n* Ongoing employee training (essential strategy) is connected to:\n\t+ Employee awareness\n\t+ Cybersecurity best practices\n\nNote: The graph information provides a visual representation of the relationships between these cybersecurity strategies and their connections.",
+        "expected_answer": "Essential strategies include zero-trust architecture, multi-factor authentication, continuous security monitoring, incident response planning, employee security training, regular vulnerability assessments, and compliance with security standards.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.10116731517509728,
+          "rouge_l": 0.09089554462822232,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.0
+        }
+      }
+    },
+    {
+      "question_id": "4",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.0955631399317406,
+      "rouge_l": 0.11204408291786933,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.0,
+      "response_time": 9.17231035232544,
+      "metadata": {
+        "question_text": "What are the key components of an Action Learning Project (ALP)?",
+        "predicted_answer": "Based on the text context and graph information, I can provide a comprehensive answer.\n\nThe key components of an Action Learning Project (ALP) typically include:\n\n1. **Action**: The ALP involves taking specific actions or initiatives to address a problem or opportunity.\n2. **Learning**: The project requires ongoing learning and reflection to improve performance and outcomes.\n3. **Project team**: A diverse group of individuals with different perspectives and expertise work together to design, implement, and evaluate the ALP.\n\nGraph Information:\n\n* An Action Learning Project (ALP) is a type of collaborative research or development project that involves taking specific actions to address a problem or opportunity.\n* The project team consists of multiple stakeholders, including leaders, managers, and employees, who contribute their expertise and perspectives.\n* Ongoing learning and reflection are essential components of the ALP, as they enable the team to adapt to changing circumstances and improve performance over time.\n\nFrom this information, we can infer that the key components of an Action Learning Project (ALP) include:\n\n* Taking specific actions to address a problem or opportunity\n* Ongoing learning and reflection to improve performance and outcomes\n* A diverse project team with different perspectives and expertise\n\nTherefore, based on both the text context and graph information, I can conclude that the key components of an Action Learning Project (ALP) are:\n\n1. **Action**: Taking specific actions to address a problem or opportunity.\n2. **Learning**: Ongoing learning and reflection to improve performance and outcomes.\n3. **Project team**: A diverse group of individuals with different perspectives and expertise work together.\n\nThese three components are essential for the success of an Action Learning Project (ALP).",
+        "expected_answer": "An ALP typically includes problem identification, team formation, action-oriented learning approach, real-world application, reflection and learning cycles, mentorship components, and measurable outcomes with business impact.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.0955631399317406,
+          "rouge_l": 0.11204408291786933,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.0
+        }
+      }
+    },
+    {
+      "question_id": "2",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.08163265306122448,
+      "rouge_l": 0.05507279088139036,
+      "bleu_score": 0.010311168145122432,
+      "retrieval_recall": 0.19047619047619047,
+      "response_time": 14.180835247039795,
+      "metadata": {
+        "question_text": "What digital transformation strategies should CTOs focus on?",
+        "predicted_answer": "Based on the text context and graph information, here's a comprehensive answer:\n\nCTOs (Chief Technology Officers) play a crucial role in driving digital innovation and transforming organizations. To excel as a CTO, aspiring professionals should focus on several key areas:\n\n1. **Digital Transformation Strategies**: CTOs should understand how to get digital technologies to the core of an organization, creating customer obsession and building a start-up culture.\n2. **Platform Approach**: Shift from specific projects to a platform, organizing for success through agile processes, and automating as much as possible to enable speed and modern systems design.\n3. **Catalyst for New Possibilities**: CTOs serve as catalysts for new possibilities enabled by digital innovation, shaping business cases beyond financial considerations.\n\nThe text highlights the importance of connecting new ideas with a strategic business case, asking questions like \"What are the strategic implications of innovation?\" and \"How can we steer attention towards these implications?\"\n\nAdditionally, CTOs should:\n\n* **Build Relationships**: Establish relationships with customers to educate them about potential products and services arising from digital innovation.\n* **Be a Translational Voice**: Help organizations communicate their digital transformation journey to customers.\n\nTo become an effective strategy catalyst, aspiring CTOs should acquire specific knowledge and skills, including:\n\n1. Understanding the digital economy\n2. Recognizing challenges and opportunities presented by disruption and innovation\n3. Comprehending the digital transformation landscape\n\nBy focusing on these areas, aspiring CTOs can excel in their roles and drive successful digital transformations.\n\n**Limitation:** The provided text does not mention specific digital transformation strategies or platforms that CTOs should focus on. However, based on general knowledge of digital innovation, it is likely that CTOs should consider strategies like:\n\n* Maturity models (e.g., AWS Well-Architected Framework)\n* Cloud-native architecture\n* Microservices-based systems\n* Artificial intelligence and machine learning integration\n* Cybersecurity best practices\n\nThese are just a few examples, and the specific strategies will vary depending on the organization's needs and goals.",
+        "expected_answer": "CTOs should focus on cloud migration strategies, data modernization, automation implementation, AI/ML integration, agile development practices, DevOps culture, cybersecurity frameworks, and building scalable technology architectures.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.08163265306122448,
+          "rouge_l": 0.05507279088139036,
+          "bleu_score": 0.010311168145122432,
+          "retrieval_recall": 0.19047619047619047
+        }
+      }
+    },
+    {
+      "question_id": "7",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.0684931506849315,
+      "rouge_l": 0.0434318262726949,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.0,
+      "response_time": 13.766071319580078,
+      "metadata": {
+        "question_text": "What are the best practices for managing technology teams?",
+        "predicted_answer": "Based on the available text and graph information, here's a comprehensive answer:\n\n**Best Practices for Managing Technology Teams**\n\nManaging technology teams requires a combination of technical expertise, leadership skills, and effective communication. Here are some best practices to consider:\n\n1. **Define Clear Roles and Responsibilities**: Establish clear roles and responsibilities within the team to ensure that each member knows their tasks and expectations.\n2. **Develop a Strong Team Culture**: Foster a positive and inclusive team culture that encourages collaboration, creativity, and open communication.\n3. **Provide Ongoing Training and Development**: Offer regular training and development opportunities to help team members stay up-to-date with the latest technologies and best practices.\n4. **Use Agile Methodologies**: Adopt agile methodologies such as Scrum or Kanban to facilitate iterative and incremental delivery of projects.\n5. **Establish Clear Communication Channels**: Set up clear communication channels, including regular meetings, project management tools, and feedback mechanisms.\n6. **Monitor Progress and Performance**: Regularly monitor progress and performance within the team to identify areas for improvement and make data-driven decisions.\n7. **Lead by Example**: Demonstrate leadership skills by modeling the behaviors and values you expect from your team members.\n\n**Graph Information:**\n\nFrom the provided text, we can infer that there is a graph related to technology teams, which may include nodes representing different roles (e.g., developers, project managers), edges representing relationships between roles (e.g., collaboration, communication), and other relevant entities (e.g., technologies, tools).\n\nSome key connections in this graph might be:\n\n* Developers are connected to Project Managers through a shared responsibility for delivering projects.\n* Team Members are connected to each other through regular meetings and feedback mechanisms.\n* Technologies and tools are connected to the graph as nodes, with edges representing their integration and usage within the team.\n\n**Conclusion:**\n\nBased on the text and graph information, here's a summary of best practices for managing technology teams:\n\n1. Define clear roles and responsibilities\n2. Develop a strong team culture\n3. Provide ongoing training and development\n4. Use agile methodologies\n5. Establish clear communication channels\n6. Monitor progress and performance\n7. Lead by example\n\nBy following these best practices, technology teams can work effectively together to deliver high-quality projects and achieve their goals.\n\n**Incomplete Information:**\nThe provided text does not explicitly mention any specific technologies or tools that are commonly used in managing technology teams. However, the graph information suggests that various technologies and tools may be involved in the management process (e.g., project management tools",
+        "expected_answer": "Best practices include fostering collaborative culture, providing clear technical direction, implementing agile methodologies, ensuring skill development opportunities, maintaining work-life balance, and establishing effective communication channels.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.0684931506849315,
+          "rouge_l": 0.0434318262726949,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.0
+        }
+      }
+    },
+    {
+      "question_id": "5",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.07511737089201878,
+      "rouge_l": 0.07640007156915368,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.14285714285714285,
+      "response_time": 10.504025936126709,
+      "metadata": {
+        "question_text": "What technology leadership principles should CTOs follow?",
+        "predicted_answer": "Based on the text and graph information, here are some technology leadership principles that CTOs should follow:\n\n1. **Digital Acumen**: Understand the evolution of technology and its implications for the organization's products, processes, and operations (text).\n2. **Strong Communication Skills**: Collaborate with various stakeholders and leverage different communication channels appropriately to effectively respond to technological changes and business strategy (text).\n3. **Adaptability and Guidance**: Adapt to technological changes, develop and nurture talent, and guide teams through technological shifts (text).\n4. **Collaboration and Teamwork**: Foster collaboration and teamwork to achieve organizational goals under the guidance of the CTO.\n5. **Leadership Role**: Play a crucial role as a strategy catalyst and provide an overview of topics covered in the module.\n\nAdditionally, based on the graph information:\n\n* **Navigating Technological Landscape**: Master technology to respond effectively in a dynamic environment (text).\n* **Technology Leadership Principles**:\n\t+ Emphasize digital acumen\n\t+ Leverage constructive interaction between people and technology\n\t+ Adapt to technological changes\n\t+ Develop and nurture talent\n\t+ Foster collaboration and teamwork\n\nThese principles highlight the importance of CTOs possessing strong technical skills, effective communication abilities, adaptability, and leadership qualities to effectively lead the organization's technology strategy.",
+        "expected_answer": "CTOs should follow principles of servant leadership, continuous learning, strategic thinking, innovation culture, team empowerment, data-driven decision making, risk management, and stakeholder communication.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.07511737089201878,
+          "rouge_l": 0.07640007156915368,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.14285714285714285
+        }
+      }
+    },
+    {
+      "question_id": "6",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.09737827715355805,
+      "rouge_l": 0.09685334872979215,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.18181818181818182,
+      "response_time": 8.788149356842041,
+      "metadata": {
+        "question_text": "How do you implement effective governance frameworks in technology organizations?",
+        "predicted_answer": "Based on the provided text and graph information, implementing an effective governance framework in a technology organization involves several key components. Here's how:\n\n1. **Establishing Partnerships**: The ecosystem of partners who contribute to innovation is crucial for creating a robust governance framework.\n2. **Developing Ideas**: This process generates different ideas, which will be the foundation of the governance framework.\n3. **Creating a Governance Framework**: A digital platform serves as the core of this framework, providing a structured approach to decision-making and accountability.\n\nThe five components of the governance framework are:\n\n1. **Decision Rights**: Who has the authority to make specific decisions within the framework?\n2. **Decision Rules**: Specific guidelines or criteria that govern decision-making processes.\n3. **Governance Structure**: The organizational structure and roles involved in making decisions.\n4. **Accountability Mechanisms**: Processes for holding individuals accountable for their actions within the framework.\n5. **Assessment and Review**: Regular evaluations to ensure the framework is effective and addresses all layers.\n\nTo implement an effective governance framework, a technology organization can:\n\n1. Establish clear decision rights and rules for each layer of the framework.\n2. Define the governance structure and roles involved in making decisions.\n3. Implement accountability mechanisms to ensure individuals are held accountable for their actions.\n4. Regularly assess and review the framework to identify areas for improvement.\n\nBy following these steps, a technology organization can create an effective governance framework that supports innovation and responsible decision-making within its ecosystem of partners.",
+        "expected_answer": "Effective governance requires establishing clear decision-making processes, compliance frameworks, risk assessment procedures, technology standards, performance metrics, accountability structures, and regular review cycles.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.09737827715355805,
+          "rouge_l": 0.09685334872979215,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.18181818181818182
+        }
+      }
+    },
+    {
+      "question_id": "3",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.07424593967517401,
+      "rouge_l": 0.07682619647355164,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.09090909090909091,
+      "response_time": 15.212670803070068,
+      "metadata": {
+        "question_text": "How should quality assurance strategies be adapted for AI landscapes?",
+        "predicted_answer": "Based on the provided text and graph information, here's an answer that incorporates both context and knowledge:\n\n**Adapting Quality Assurance Strategies for AI Landscapes**\n\nThe current QA strategies are not sufficient to adapt to the rapidly evolving AI landscape. The rapid advancements in AI technology have introduced new challenges and opportunities for quality assurance.\n\n**Understanding LLMs (Large Language Models)**\n\nLLMs, such as BERT, RoBERTa, and others, are a type of artificial intelligence that enables computers to understand and generate human-like language. They have revolutionized the field of natural language processing (NLP) and have significant implications for QA strategies.\n\n**AI Agents**\n\nAI agents are software programs that can interact with their environment and make decisions based on the data they receive. In the context of AI, AI agents can be used to automate testing and validation processes, reducing the need for human intervention.\n\n**Agentic**\n\nAgentic refers to the ability of an entity (in this case, an AI system) to take responsibility for its actions and decisions. This is essential in QA strategies, as it ensures that AI systems are held accountable for their performance.\n\n**Adapting QA Strategies**\n\nTo adapt QA strategies for AI landscapes, the following approaches can be taken:\n\n1. **Use of LLMs**: Leverage LLMs to generate test cases, automate testing, and improve the accuracy of testing results.\n2. **Integration with AI Agents**: Use AI agents to interact with the LLMs and provide additional context and data to enhance the quality of tests.\n3. **Agentic Frameworks**: Develop agentic frameworks that outline the responsibilities and accountability of AI systems in QA processes.\n4. **Continuous Testing**: Implement continuous testing processes that allow for rapid adaptation to new AI technologies and updates.\n\n**Graph Information**\n\nBased on the provided text, here are some key points:\n\n* LLMs have significant implications for QA strategies\n* AI agents can automate testing and validation processes\n* Agentic frameworks are essential for holding AI systems accountable\n* Continuous testing is crucial for adapting to new AI technologies\n\nBy understanding these concepts and incorporating them into QA strategies, organizations can ensure that their testing processes remain effective in the face of rapid AI advancements.\n\n**Key Takeaways**\n\n1. LLMs have significant implications for QA strategies.\n2. AI agents can automate testing and validation processes.\n3. Agentic frameworks are essential for holding AI systems accountable.\n4. Continuous testing is crucial for adapting to new AI technologies.\n\nBy adopting these approaches, organizations can ensure",
+        "expected_answer": "Quality assurance in AI requires implementing model validation frameworks, continuous monitoring of AI performance, bias detection and mitigation, explainable AI practices, robust testing datasets, automated testing pipelines, and ethical AI guidelines.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.07424593967517401,
+          "rouge_l": 0.07682619647355164,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.09090909090909091
+        }
+      }
+    },
+    {
+      "question_id": "11",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.11926605504587154,
+      "rouge_l": 0.09516380655226209,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.22727272727272727,
+      "response_time": 6.876985311508179,
+      "metadata": {
+        "question_text": "What role does data strategy play in technology leadership?",
+        "predicted_answer": "Based on the text and graph information, it appears that data strategy plays a crucial role in technology leadership.\n\nThe text mentions that \"data leadership team (including engineers, scientists, and practitioners) shared the organization's new data operating model, recent technology advances, and target data architecture to help provide context for the work.\" This suggests that the data strategy is not just about technical decisions, but also about providing a clear understanding of the organization's overall direction and goals.\n\nThe graph information reinforces this idea by showing the connections between different entities, such as:\n\n* Data leadership team (including engineers, scientists, and practitioners)\n* Organization\n* New data operating model\n* Recent technology advances\n* Target data architecture\n\nThis suggests that data strategy is a key component of technology leadership, as it enables leaders to make informed decisions about how to use data to drive business outcomes.\n\nTherefore, the answer to the question \"What role does data strategy play in technology leadership?\" is:\n\nData strategy plays a critical role in technology leadership by providing context and direction for technical decisions, enabling leaders to make informed decisions about using data to drive business outcomes.",
+        "expected_answer": "Data strategy is crucial for informed decision making, involves data governance frameworks, quality management, analytics capabilities, privacy compliance, data architecture design, and building data-driven culture across the organization.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.11926605504587154,
+          "rouge_l": 0.09516380655226209,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.22727272727272727
+        }
+      }
+    },
+    {
+      "question_id": "12",
+      "method": "graph_rag",
+      "exact_match": 0.0,
+      "f1_score": 0.043010752688172046,
+      "rouge_l": 0.04987735077677842,
+      "bleu_score": 0.0,
+      "retrieval_recall": 0.0,
+      "response_time": 6.409717082977295,
+      "metadata": {
+        "question_text": "How should CTOs manage technology vendor relationships?",
+        "predicted_answer": "Based on the text context and graph information, it appears that CTOs (Chief Technology Officers) play a crucial role in managing technology vendor relationships. Here's a comprehensive answer:\n\nCTOs can build relationships with technology vendors by being at the front end of how these vendors complement the success of their own organization. This means CTOs should focus on creating partnerships and collaborations that benefit both parties.\n\nIn terms of building these relationships, CTOs are often referred to as \"translational voices\" to customers. They can help organizations educate its customers about potential products and services that arise from digital innovation, such as digital infrastructure and investments.\n\nTo summarize, CTOs should:\n\n1. Be at the front end of technology vendor relationships.\n2. Build partnerships and collaborations with vendors to complement their organization's success.\n3. Act as a translational voice to educate customers about potential digital innovations.\n\nBy following these steps, CTOs can effectively manage technology vendor relationships and drive business growth for their organizations.",
+        "expected_answer": "Vendor management requires due diligence processes, contract negotiation skills, performance monitoring, risk assessment, relationship building, technology evaluation frameworks, and strategic partnership development.",
+        "all_scores": {
+          "exact_match": 0.0,
+          "f1_score": 0.043010752688172046,
+          "rouge_l": 0.04987735077677842,
+          "bleu_score": 0.0,
+          "retrieval_recall": 0.0
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "method_summaries": {
+      "graph_rag": "EvaluationSummary(method='graph_rag', num_questions=12, avg_exact_match=0.0, avg_f1_score=0.08546933493918221, avg_rouge_l=0.07788245815773144, avg_bleu_score=np.float64(0.000859264012093536), avg_retrieval_recall=0.11201298701298701, avg_response_time=10.576729079087576, std_response_time=2.7847210814464574, metadata={'score_ranges': {'exact_match': (0.0, 0.0), 'f1_score': (0.043010752688172046, 0.11926605504587154), 'rouge_l': (0.0434318262726949, 0.11204408291786933), 'bleu_score': (0.0, np.float64(0.010311168145122432)), 'retrieval_recall': (0.0, 0.2727272727272727)}})"
+    },
+    "best_methods": {
+      "avg_exact_match": [
+        "graph_rag",
+        0.0
+      ],
+      "avg_f1_score": [
+        "graph_rag",
+        0.08546933493918221
+      ],
+      "avg_rouge_l": [
+        "graph_rag",
+        0.07788245815773144
+      ],
+      "avg_bleu_score": [
+        "graph_rag",
+        0.000859264012093536
+      ],
+      "avg_retrieval_recall": [
+        "graph_rag",
+        0.11201298701298701
+      ]
+    },
+    "comparison_table": {
+      "graph_rag": {
+        "exact_match": 0.0,
+        "f1_score": 0.08546933493918221,
+        "rouge_l": 0.07788245815773144,
+        "bleu_score": 0.000859264012093536,
+        "retrieval_recall": 0.11201298701298701,
+        "response_time": 10.576729079087576,
+        "num_questions": 12
+      }
+    },
+    "total_questions": 12
+  }
+}

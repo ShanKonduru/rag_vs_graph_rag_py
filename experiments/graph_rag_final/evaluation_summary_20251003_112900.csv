@@ -1,0 +1,2 @@
+Method,Num Questions,Exact Match,F1 Score,ROUGE-L,BLEU Score,Retrieval Recall,Avg Response Time,Std Response Time
+graph_rag,12,0.0000,0.0855,0.0779,0.0009,0.1120,10.5767,2.7847

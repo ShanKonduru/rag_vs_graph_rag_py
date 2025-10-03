@@ -101,7 +101,7 @@ def run_evaluation(ctx, test_data, methods, output_dir, config, runs):
         
         vector_store.load(str(store_path))
     
-    if any(method in ['graph_rag', 'kg_only'] for method in methods):
+    if any(method in ['graph_rag', 'kg_only', 'knowledge_graph'] for method in methods):
         # Create knowledge graph
         kg_builder = KnowledgeGraphBuilder(system_config)
         knowledge_graph = kg_builder.get_knowledge_graph()
@@ -122,7 +122,7 @@ def run_evaluation(ctx, test_data, methods, output_dir, config, runs):
             retriever = GraphRAGRetriever(vector_store, embedding_model, knowledge_graph, system_config)
             system_prompt = GRAPH_RAG_SYSTEM_PROMPT.format()
             answer_template = GRAPH_RAG_ANSWER_PROMPT
-        else:  # kg_only
+        else:  # kg_only or knowledge_graph
             retriever = KnowledgeGraphRetriever(knowledge_graph, system_config)
             system_prompt = KG_SYSTEM_PROMPT.format()
             answer_template = KG_ANSWER_PROMPT

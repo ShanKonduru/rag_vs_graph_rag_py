@@ -239,14 +239,17 @@ class Neo4jKnowledgeGraph(KnowledgeGraph):
     ) -> GraphQueryResult:
         """Get subgraph around specified entities"""
         with self.driver.session(database=self.database) as session:
-            result = session.run("""
+            # Build the query with the depth parameter directly embedded
+            # since Neo4j doesn't allow parameter substitution in variable patterns
+            query = f"""
                 MATCH (e:Entity) 
                 WHERE e.id IN $entity_ids
-                OPTIONAL MATCH (e)-[r:RELATED*1..$depth]-(connected:Entity)
+                OPTIONAL MATCH (e)-[r:RELATED*1..{depth}]-(connected:Entity)
                 RETURN e, r, connected
-            """, {
-                "entity_ids": entity_ids,
-                "depth": depth
+            """
+            
+            result = session.run(query, {
+                "entity_ids": entity_ids
             })
             
             nodes = {}

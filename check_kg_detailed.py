@@ -94,10 +94,10 @@ def main():
         print('\n🔍 Testing knowledge graph retrieval (as used in evaluation)...')
         
         # This simulates how the KG retrieval works during evaluation
-        from src.rag_system.retrieval.knowledge_graph_retrieval import KnowledgeGraphRetrieval
+        from src.rag_system.retrieval.retrievers import KnowledgeGraphRetriever
         
         # Create retrieval system same way as in evaluation
-        kg_retrieval = KnowledgeGraphRetrieval(kg)
+        kg_retrieval = KnowledgeGraphRetriever(kg, config)
         
         # Test with sample questions from our evaluation
         test_questions = [
@@ -108,10 +108,16 @@ def main():
         
         for question in test_questions:
             try:
-                results = kg_retrieval.retrieve(question, top_k=3)
-                print(f'  Question: "{question}" -> {len(results)} results')
-                for result in results:
-                    print(f'    - Score: {result.score:.3f}, Content: {result.content[:100]}...')
+                context = kg_retrieval.retrieve(question, top_k=3)
+                num_entities = context.metadata.get('num_entities', 0) if context.metadata else 0
+                print(f'  Question: "{question}" -> {num_entities} entities found')
+                if context.graph_data and context.graph_data.nodes:
+                    print(f'    Graph summary: {len(context.graph_data.nodes)} nodes, {len(context.graph_data.edges) if context.graph_data.edges else 0} edges')
+                    # Show first few entities found
+                    for i, node in enumerate(context.graph_data.nodes[:3]):
+                        print(f'    - Entity {i+1}: {node.label} ({node.entity_type.value})')
+                else:
+                    print(f'    No graph data returned')
             except Exception as e:
                 print(f'    Error retrieving for "{question}": {e}')
         
