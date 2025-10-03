@@ -1,6 +1,6 @@
 # 🧠 RAG vs Graph RAG vs Knowledge Graph System
 
-A comprehensive Python system for comparing three knowledge-driven QA/retrieval approaches with production-ready automation scripts and detailed evaluation framework.
+A comprehensive Python system for comparing three knowledge-driven QA/retrieval approaches with production-ready automation scripts, detailed evaluation framework, and interactive Streamlit dashboard.
 
 ## 🎯 **System Overview**
 
@@ -10,9 +10,32 @@ A comprehensive Python system for comparing three knowledge-driven QA/retrieval 
 | **🕸️ Graph RAG** | Hybrid approach combining vector retrieval with graph-structured context | Complex knowledge domains requiring relationship understanding |
 | **📊 Knowledge Graph Only** | Pure graph-based retrieval using Neo4j | Structured queries with explainable reasoning paths |
 
-## 📋 **Table of Contents**
+## 🚀 **Quick Access**
 
+### **🌐 Interactive Dashboard (Recommended)**
+```bash
+# Launch Streamlit Dashboard (Demo Mode - No Setup Required)
+.\run_streamlit.bat demo
+
+# Or for full system integration
+.\run_streamlit.bat
+```
+**Dashboard URL**: [http://localhost:8501](http://localhost:8501)
+
+### **� Command Line Interface**
+```bash
+# Quick test run
+.\run_quick_tests.bat
+
+# Full evaluation pipeline
+.\run_full_pipeline.bat
+```
+
+## �📋 **Table of Contents**
+
+- [🚀 Quick Access](#-quick-access)
 - [✨ Features](#-features)
+- [🌐 Interactive Dashboard](#-interactive-dashboard)
 - [🏗️ Architecture](#-architecture)
 - [📚 Enhanced Knowledge Base & Documentation](#-enhanced-knowledge-base--documentation)
 - [🚀 Quick Start](#quick-start)
@@ -33,6 +56,7 @@ A comprehensive Python system for comparing three knowledge-driven QA/retrieval 
 ## ✨ Features
 
 - 🔍 **Multiple Retrieval Methods**: Compare RAG, Graph RAG, and KG-only approaches
+- 🌐 **Interactive Streamlit Dashboard**: Web-based interface for testing and visualization
 - 📚 **Rich Document Processing**: Support for PDF, HTML, Markdown, DOCX, and text files
 - 🚀 **Local-First Architecture**: Uses local Ollama LLM and vector stores (no cloud dependencies)
 - 📊 **Comprehensive Evaluation**: Multiple metrics including BLEU, ROUGE-L, F1, and Exact Match
@@ -42,6 +66,56 @@ A comprehensive Python system for comparing three knowledge-driven QA/retrieval 
 - ⚡ **Automation Scripts**: Windows `.bat` and Unix `.sh` scripts for complete workflow automation
 - 📖 **Enhanced Knowledge Base**: Comprehensive AI documentation with modern concepts (Gen AI, Agentic AI, etc.)
 - 🔄 **Production Ready**: Complete CI/CD pipeline with comprehensive documentation
+
+## 🌐 **Interactive Dashboard**
+
+The Streamlit dashboard provides a comprehensive web interface for testing and comparing RAG methods with real-time visualizations.
+
+### **🎯 Key Features**
+- **🔍 Interactive Query Testing**: Real-time question testing across all methods
+- **📊 Performance Comparison**: Side-by-side metrics with interactive charts
+- **📚 Knowledge Base Explorer**: Browse and analyze the AI knowledge base
+- **🔧 System Monitoring**: Live health checks and service status
+- **📈 Analytics & Insights**: Performance trends and optimization recommendations
+
+### **🚀 Quick Start Options**
+
+#### **Option 1: Demo Mode (Instant Access)**
+```bash
+# Windows
+.\run_streamlit.bat demo
+
+# Unix/Linux
+./run_streamlit.sh demo
+```
+- ✅ **No setup required** - runs with mock data
+- ✅ **Full UI experience** - complete dashboard functionality
+- ✅ **Educational value** - learn about RAG methods
+- ✅ **Decision making** - understand method trade-offs
+
+#### **Option 2: Full System Integration**
+```bash
+# Windows - Setup and launch
+.\dev_setup.bat
+.\run_streamlit.bat
+
+# Unix/Linux - Setup and launch
+./dev_setup.sh
+./run_streamlit.sh
+```
+- ✅ **Live system integration** - real RAG queries
+- ✅ **Real-time performance** - actual timing and quality metrics
+- ✅ **Full evaluation pipeline** - comprehensive testing
+- ✅ **System monitoring** - live service health checks
+
+### **📱 Dashboard Sections**
+1. **🔍 Query Testing**: Interactive question testing with real-time results
+2. **📊 Performance**: Method comparison with metrics and charts
+3. **📚 Knowledge Base**: Content explorer and entity relationships
+4. **🔍 Method Details**: Architecture explanations and use cases
+5. **📈 Analytics**: Usage statistics and optimization insights
+
+**📖 Complete Guide**: See [`STREAMLIT_GUIDE.md`](STREAMLIT_GUIDE.md) for detailed documentation
 
 ## Architecture
 
@@ -463,6 +537,14 @@ rag_vs_graph_rag_py/
 ├── configs/                  # Configuration files
 │   ├── default.yaml         # Default configuration
 │   └── dev.yaml            # Development configuration
+├── 🌐 Streamlit Dashboard/   # Interactive web interface
+│   ├── streamlit_app.py     # Main dashboard application
+│   ├── streamlit_demo.py    # Demo version with mock data
+│   ├── .streamlit/          # Dashboard configuration
+│   │   └── config.toml      # Streamlit settings
+│   ├── run_streamlit.bat    # Windows launcher
+│   ├── run_streamlit.sh     # Unix launcher
+│   └── STREAMLIT_GUIDE.md   # Complete dashboard documentation
 ├── data/                    # Data directory (generated)
 │   ├── documents/           # Your input documents
 │   │   ├── ai_introduction.md
@@ -481,6 +563,11 @@ rag_vs_graph_rag_py/
 │       ├── evaluation_2025-10-02_21-30-45.json
 │       ├── detailed_2025-10-02_21-30-45.csv
 │       └── comparison_report.html
+├── 🤖 Automation Scripts/    # Complete workflow automation
+│   ├── dev_setup.bat/.sh    # Development environment setup
+│   ├── run_full_pipeline.bat/.sh  # Complete evaluation pipeline
+│   ├── run_quick_tests.bat/.sh    # Quick system validation
+│   └── docker_services.bat/.sh   # Docker service management
 ├── docker/                  # Docker configuration
 │   ├── docker-compose.yml
 │   ├── setup.sh
