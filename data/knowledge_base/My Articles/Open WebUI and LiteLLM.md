@@ -1,0 +1,1 @@
+![Open WebUI and LiteLLM](Open WebUI and LiteLLM.png)

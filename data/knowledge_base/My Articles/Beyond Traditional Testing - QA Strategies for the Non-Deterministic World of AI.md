@@ -1,0 +1,1 @@
+![Beyond Traditional Testing - QA Strategies for the Non-Deterministic World of AI](Beyond Traditional Testing - QA Strategies for the Non-Deterministic World of AI.png)
