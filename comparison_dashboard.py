@@ -121,6 +121,7 @@ class RAGComparator:
         self.retrievers = {}
         self.llm = None
         self.metrics_calculator = None
+        self.demo_mode = True  # Start in demo mode until systems are loaded
         self.load_existing_systems()
     
     def load_existing_systems(self):
@@ -256,17 +257,20 @@ class RAGComparator:
             
             if self.retrievers:
                 st.sidebar.success(f"✅ {len(self.retrievers)} systems loaded successfully!")
+                self.demo_mode = False  # Real systems loaded
             else:
                 st.sidebar.warning("⚠️ No systems loaded, using demo mode")
+                self.demo_mode = True  # Force demo mode
             
         except Exception as e:
             st.sidebar.error(f"❌ Error loading systems: {e}")
             st.sidebar.info("🔄 Falling back to demo mode")
             self.retrievers = {}
+            self.demo_mode = True  # Force demo mode on error
     
     def get_available_systems(self) -> List[str]:
         """Get list of available RAG systems"""
-        if not FULL_SYSTEM_AVAILABLE or not self.retrievers:
+        if self.demo_mode or not FULL_SYSTEM_AVAILABLE or not self.retrievers:
             return ["Demo Mode - RAG", "Demo Mode - Graph RAG", "Demo Mode - Knowledge Graph"]
         return list(self.retrievers.keys())
     
@@ -274,7 +278,7 @@ class RAGComparator:
         """Query a specific RAG system and measure performance"""
         start_time = time.time()
         
-        if not FULL_SYSTEM_AVAILABLE:
+        if self.demo_mode or not FULL_SYSTEM_AVAILABLE:
             # Demo mode responses that showcase the differences
             time.sleep(np.random.uniform(0.5, 2.0))  # Simulate processing time
             
@@ -403,39 +407,40 @@ def load_sample_questions():
     """Load sample questions from the data files"""
     questions = []
     
-    # Load standard sample questions
-    questions_file = Path("data/sample_questions.json")
-    if questions_file.exists():
+    # Load RAG-specific challenge questions (primary)
+    rag_questions_file = Path("rag_specific_challenge_questions.json")
+    if rag_questions_file.exists():
         try:
-            with open(questions_file, 'r') as f:
-                questions_data = json.load(f)
-                for q in questions_data:
-                    questions.append(f"[Standard] {q['question']}")
+            with open(rag_questions_file, 'r') as f:
+                rag_data = json.load(f)
+                for q in rag_data['questions']:
+                    questions.append(f"[RAG Focus] {q['question']}")
         except:
             pass
     
-    # Load Graph RAG challenge questions
+    # Load Graph RAG challenge questions (secondary)
     challenge_file = Path("data/graph_rag_challenge_questions.json")
     if challenge_file.exists():
         try:
             with open(challenge_file, 'r') as f:
                 challenge_data = json.load(f)
-                for q in challenge_data:
+                for q in challenge_data[:3]:  # Only take first 3 for variety
                     questions.append(f"[Graph RAG Challenge] {q['question']}")
         except:
             pass
     
-    # Default sample questions if files not found
+    # Default RAG-focused questions if files not found
     if not questions:
         questions = [
-            "[Standard] What is artificial intelligence?",
-            "[Standard] How does machine learning work?",
-            "[Standard] What are the main types of machine learning?",
-            "[Graph RAG Challenge] What is the relationship between artificial intelligence, machine learning, and deep learning? How do they build upon each other?",
-            "[Graph RAG Challenge] If I use transformer architecture in natural language processing, what other AI techniques am I likely also using?",
-            "[Graph RAG Challenge] What are all the different applications where computer vision and natural language processing are used together?",
-            "[Graph RAG Challenge] Which AI research papers or techniques influenced the development of ChatGPT, and how do they connect to each other?",
-            "[Graph RAG Challenge] What are the common failure modes shared between recommendation systems, search engines, and content moderation systems?"
+            "[RAG Focus] What are the prerequisites for learning vector databases, and how do they relate to embeddings?",
+            "[RAG Focus] How do transformer architectures connect to attention mechanisms in RAG systems?",
+            "[RAG Focus] What data preprocessing steps are required before implementing vector search?",
+            "[RAG Focus] How do different embedding models affect downstream RAG performance?",
+            "[RAG Focus] What are the tradeoffs between FAISS, Pinecone, and Chroma for vector storage?",
+            "[RAG Focus] How do chunking strategies affect retrieval quality in different document types?",
+            "[RAG Focus] What is the relationship between prompt engineering and retrieval strategies?",
+            "[Graph RAG Challenge] Which AI research papers influenced the development of ChatGPT?",
+            "[Graph RAG Challenge] What are common failure modes shared between recommendation and search systems?"
         ]
     
     return questions
@@ -820,7 +825,9 @@ def render_insights_panel(results: Dict[str, Dict[str, Any]]):
     if best_conf > 0.85:
         recommendations.append("🎯 **Quality Priority**: Graph RAG recommended for comprehensive understanding")
     
-    if any("relationship" in str(results).lower() or "connect" in str(results).lower()):
+    # Check if results contain relationship-related keywords
+    results_text = str(results).lower()
+    if any(keyword in results_text for keyword in ["relationship", "connect", "depend", "prerequisite"]):
         recommendations.append("🕸️ **Relationship Queries**: Graph RAG strongly recommended")
     
     for rec in recommendations:

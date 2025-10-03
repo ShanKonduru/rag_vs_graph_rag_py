@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "question": "How does the digitisation → digitalisation → digital transformation progression from ISB CTO Week 7 relate to the blockchain adoption patterns described in Week 8, and what role does organizational culture play in both?",
+      "category": "cross_week_progression",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can connect concepts across different weeks: Digitisation → Digitalisation → Digital Transformation (Week 7) AND relate it to Blockchain Evolution → Business Adoption → Cultural Change (Week 8), showing how organizational transformation principles apply across technologies."
+    },
+    {
+      "question": "According to the ISB CTO content, what are the connections between IoT sensor networks, blockchain immutability, and the WazirX NFT marketplace case study in terms of digital asset verification?",
+      "category": "technology_integration",
+      "difficulty": "advanced", 
+      "why_graph_rag_better": "Graph RAG can trace the relationship chain: IoT Sensors → Data Generation → Blockchain Recording → Immutable Records → Digital Asset Verification → NFT Authenticity (WazirX case), while standard RAG might treat these as separate topics."
+    },
+    {
+      "question": "How do the McKinsey recommendations for CIO/CTO AI implementation connect to the digital transformation mindset changes discussed in Week 7, particularly regarding executive and manager behavior?",
+      "category": "leadership_transformation",
+      "difficulty": "intermediate",
+      "why_graph_rag_better": "Graph RAG can link McKinsey's CIO/CTO AI guidance → Executive Mindset Change → Digital Transformation Culture (Week 7) → Organizational Success, showing how leadership principles span across AI and digital initiatives."
+    },
+    {
+      "question": "What are the parallels between the ERP implementation lessons from Cisco mentioned in Week 7 and the corporate blockchain adoption by JP Morgan Chase and Novartis described in Week 8?",
+      "category": "corporate_implementation",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can identify similar patterns: Cisco ERP Lessons → Technology + Culture Alignment → Corporate Blockchain Success (JP Morgan/Novartis), revealing common enterprise transformation principles across different eras."
+    },
+    {
+      "question": "How does the WazirX NFT marketplace's choice of Binance Smart Chain over Ethereum relate to the broader blockchain evolution timeline and the permissioned vs permissionless blockchain discussion in Week 8?",
+      "category": "technology_decisions",
+      "difficulty": "intermediate",
+      "why_graph_rag_better": "Graph RAG can connect: Blockchain Evolution Timeline → Public vs Private/Permissioned → WazirX's BSC Choice → Performance Trade-offs, showing how strategic decisions fit within broader technology contexts."
+    },
+    {
+      "question": "Based on the ISB CTO content, what are the prerequisite technologies and organizational capabilities needed to implement the diamond industry blockchain solution mentioned in Week 8?",
+      "category": "implementation_prerequisites", 
+      "difficulty": "intermediate",
+      "why_graph_rag_better": "Graph RAG can identify dependencies: IoT Integration → Data Source Requirements → Blockchain Infrastructure → Supply Chain Visibility → Diamond Authentication, mapping the complete technology stack needed."
+    },
+    {
+      "question": "How do the generative AI business value estimates mentioned in the McKinsey CIO/CTO guide relate to the digital transformation ROI principles discussed in Week 7?",
+      "category": "value_realization",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can connect: McKinsey AI Value ($2.6-4.4 trillion) → Digital Transformation ROI → Cultural Change Requirements → Sustained Business Impact, showing value realization patterns across technologies."
+    },
+    {
+      "question": "What are the connections between the pharmaceutical blockchain use cases (fraud prevention, environmental monitoring) in Week 8 and the food supply chain transparency example from Walmart?",
+      "category": "industry_applications",
+      "difficulty": "intermediate", 
+      "why_graph_rag_better": "Graph RAG can identify common patterns: Supply Chain Transparency → Authentication Requirements → Real-time Monitoring → Consumer Trust, showing how similar blockchain solutions apply across different industries."
+    },
+    {
+      "question": "How does the 'pilot to scale' challenge mentioned in the McKinsey AI guide relate to the blockchain adoption timeline (Bitcoin 2010 → practical use cases 2017-2019) described in Week 8?",
+      "category": "technology_maturation",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can trace maturation patterns: Technology Emergence → Pilot Phase → Scaling Challenges → Business Value Realization, showing common patterns across both AI and blockchain adoption cycles."
+    },
+    {
+      "question": "According to the ISB CTO materials, what organizational capabilities from Week 7's digital transformation framework are necessary for the government blockchain implementations in Dubai, Georgia, and Indian states mentioned in Week 8?",
+      "category": "government_digital_transformation",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can map: Digital Transformation Framework (Week 7) → Organizational Culture Change → Government Blockchain Requirements → Public Sector Implementation Success, bridging private sector lessons with public sector applications."
+    },
+    {
+      "question": "How do the neural networks and deep learning concepts from Week 7 connect to the AI integration with IoT and blockchain systems discussed in Week 8?",
+      "category": "technical_integration",
+      "difficulty": "intermediate",
+      "why_graph_rag_better": "Graph RAG can link: Neural Networks/Deep Learning (Week 7) → AI-driven IoT Analytics → Intelligent Blockchain Systems → Enhanced Automation, showing how AI capabilities enhance blockchain and IoT implementations."
+    },
+    {
+      "question": "Based on the complete ISB CTO curriculum, what are the interconnections between generative AI business applications (Week 7), NFT marketplace business models (WazirX case), and the McKinsey organizational AI preparation strategies?",
+      "category": "comprehensive_integration",
+      "difficulty": "advanced",
+      "why_graph_rag_better": "Graph RAG can synthesize across all content: Generative AI Applications → Digital Asset Creation → NFT Business Models → Organizational AI Strategy → Complete Digital Business Transformation, providing a holistic view across all course modules."
+    }
+  ]
+}

@@ -201,26 +201,47 @@ This system includes a comprehensive AI knowledge base covering modern concepts:
 ### Prerequisites
 
 - Python 3.8+
-- Docker and Docker Compose
+- Docker and Docker Compose (optional for Neo4j)
 - At least 8GB RAM recommended
 
-### 🚀 **Option 1: Automated Setup (Recommended)**
+### 🎯 **Option 1: Dashboard Demo (No Setup Required)**
+
+**Launch Simple Dashboard (Recommended for first time users):**
+```bash
+# Windows
+scripts\run_simple_dashboard.bat
+
+# Linux/Mac
+scripts/run_simple_dashboard.sh
+```
+**Access at**: http://localhost:8508 - Pure demo mode with example responses
+
+**Launch Enhanced Dashboard (Attempts real system loading):**
+```bash
+# Windows
+scripts\run_enhanced_dashboard.bat
+
+# Linux/Mac
+scripts/run_enhanced_dashboard.sh
+```
+**Access at**: http://localhost:8509 - Tries to load real systems, falls back to demo
+
+### 🚀 **Option 2: Full System Setup**
 
 **Windows:**
 ```bash
 # Complete setup and pipeline execution
-scripts\dev_setup.bat                 # One-time setup
-scripts\docker_services.bat start     # Start services (optional)
-scripts\run_full_pipeline.bat         # Execute full pipeline
+scripts\003_setup.bat                 # Install dependencies
+scripts\run_comparison_dashboard.bat  # Launch full dashboard (requires setup)
 ```
+**Access at**: http://localhost:8507 - Full system integration
 
 **Unix/Linux:**
 ```bash
 # Make scripts executable and run setup
 chmod +x scripts/*.sh
-scripts/dev_setup.sh                # One-time setup
-scripts/docker_services.sh start    # Start services (optional)
-scripts/run_full_pipeline.sh        # Execute full pipeline
+scripts/setup_environment.sh          # Install dependencies
+scripts/run_comparison_dashboard.sh   # Launch full dashboard
 ```
 
 > 📖 **See [SCRIPTS_USAGE_GUIDE.md](SCRIPTS_USAGE_GUIDE.md) for comprehensive automation guide**
