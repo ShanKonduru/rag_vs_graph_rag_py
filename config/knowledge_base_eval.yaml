@@ -1,0 +1,42 @@
+# Knowledge Base Evaluation Configuration
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+  device: "cpu"
+  batch_size: 32
+
+vector_store:
+  backend: "faiss"
+  index_type: "flat"
+  distance_metric: "cosine"
+  storage_path: "./data/vector_store"
+
+neo4j:
+  uri: "bolt://localhost:7687"
+  username: "neo4j"
+  password: "password"
+  database: "neo4j"
+
+ollama:
+  base_url: "http://localhost:11434"
+  model_name: "llama3.2:1b"
+  temperature: 0.3
+  max_tokens: 512
+  timeout: 120
+
+ingestion:
+  chunk_size: 512
+  chunk_overlap: 50
+  min_chunk_length: 50
+
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  graph_traversal_depth: 2
+  max_graph_nodes: 15
+
+evaluation:
+  metrics: ["exact_match", "f1", "rouge_l", "bleu"]
+  output_dir: "./experiments/results"
+
+log_level: "INFO"
+random_seed: 42

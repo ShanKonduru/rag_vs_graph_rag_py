@@ -1,0 +1,4 @@
+Method,Num Questions,Exact Match,F1 Score,ROUGE-L,BLEU Score,Retrieval Recall,Avg Response Time,Std Response Time
+rag,12,0.0000,0.1303,0.1112,0.0010,0.1120,8.6658,3.7235
+graph_rag,12,0.0000,0.0806,0.0750,0.0010,0.1120,14.1718,4.5570
+kg_only,12,0.0000,0.1204,0.0980,0.0013,0.0000,10.7435,4.6321

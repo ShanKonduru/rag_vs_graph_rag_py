@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "question": "What are the key responsibilities of a Chief Technology Officer (CTO)?",
+    "expected_answer": "A CTO is responsible for strategic technology planning, overseeing technology development teams, making technology investment decisions, ensuring scalability and security of technology systems, driving innovation, and aligning technology initiatives with business objectives.",
+    "metadata": {"topic": "CTO Role", "source": "CTO training materials"}
+  },
+  {
+    "id": 2,
+    "question": "What digital transformation strategies should CTOs focus on?",
+    "expected_answer": "CTOs should focus on cloud migration strategies, data modernization, automation implementation, AI/ML integration, agile development practices, DevOps culture, cybersecurity frameworks, and building scalable technology architectures.",
+    "metadata": {"topic": "Digital Transformation", "source": "Training materials"}
+  },
+  {
+    "id": 3,
+    "question": "How should quality assurance strategies be adapted for AI landscapes?",
+    "expected_answer": "Quality assurance in AI requires implementing model validation frameworks, continuous monitoring of AI performance, bias detection and mitigation, explainable AI practices, robust testing datasets, automated testing pipelines, and ethical AI guidelines.",
+    "metadata": {"topic": "AI Quality Assurance", "source": "Quality Assurance article"}
+  },
+  {
+    "id": 4,
+    "question": "What are the key components of an Action Learning Project (ALP)?",
+    "expected_answer": "An ALP typically includes problem identification, team formation, action-oriented learning approach, real-world application, reflection and learning cycles, mentorship components, and measurable outcomes with business impact.",
+    "metadata": {"topic": "Action Learning", "source": "ALP Document"}
+  },
+  {
+    "id": 5,
+    "question": "What technology leadership principles should CTOs follow?",
+    "expected_answer": "CTOs should follow principles of servant leadership, continuous learning, strategic thinking, innovation culture, team empowerment, data-driven decision making, risk management, and stakeholder communication.",
+    "metadata": {"topic": "Technology Leadership", "source": "CTO training"}
+  },
+  {
+    "id": 6,
+    "question": "How do you implement effective governance frameworks in technology organizations?",
+    "expected_answer": "Effective governance requires establishing clear decision-making processes, compliance frameworks, risk assessment procedures, technology standards, performance metrics, accountability structures, and regular review cycles.",
+    "metadata": {"topic": "Governance", "source": "Training materials"}
+  },
+  {
+    "id": 7,
+    "question": "What are the best practices for managing technology teams?",
+    "expected_answer": "Best practices include fostering collaborative culture, providing clear technical direction, implementing agile methodologies, ensuring skill development opportunities, maintaining work-life balance, and establishing effective communication channels.",
+    "metadata": {"topic": "Team Management", "source": "Leadership training"}
+  },
+  {
+    "id": 8,
+    "question": "How should CTOs approach innovation management?",
+    "expected_answer": "CTOs should create innovation frameworks, allocate resources for R&D, establish experimentation processes, encourage failure tolerance, build partnerships with startups and academia, and maintain technology roadmaps aligned with business strategy.",
+    "metadata": {"topic": "Innovation Management", "source": "Strategic planning"}
+  },
+  {
+    "id": 9,
+    "question": "What cybersecurity strategies are essential for modern organizations?",
+    "expected_answer": "Essential strategies include zero-trust architecture, multi-factor authentication, continuous security monitoring, incident response planning, employee security training, regular vulnerability assessments, and compliance with security standards.",
+    "metadata": {"topic": "Cybersecurity", "source": "Security frameworks"}
+  },
+  {
+    "id": 10,
+    "question": "How do you build scalable technology architectures?",
+    "expected_answer": "Scalable architectures require microservices design, cloud-native approaches, load balancing, database optimization, caching strategies, API management, monitoring and observability, and automated deployment pipelines.",
+    "metadata": {"topic": "Architecture", "source": "Technical training"}
+  },
+  {
+    "id": 11,
+    "question": "What role does data strategy play in technology leadership?",
+    "expected_answer": "Data strategy is crucial for informed decision making, involves data governance frameworks, quality management, analytics capabilities, privacy compliance, data architecture design, and building data-driven culture across the organization.",
+    "metadata": {"topic": "Data Strategy", "source": "Data management"}
+  },
+  {
+    "id": 12,
+    "question": "How should CTOs manage technology vendor relationships?",
+    "expected_answer": "Vendor management requires due diligence processes, contract negotiation skills, performance monitoring, risk assessment, relationship building, technology evaluation frameworks, and strategic partnership development.",
+    "metadata": {"topic": "Vendor Management", "source": "Procurement training"}
+  }
+]

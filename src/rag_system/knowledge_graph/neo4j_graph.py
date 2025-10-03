@@ -39,22 +39,35 @@ class Neo4jKnowledgeGraph(KnowledgeGraph):
         """Add entities to the knowledge graph"""
         with self.driver.session(database=self.database) as session:
             for entity in entities:
+                # Flatten properties to primitive types only
+                flattened_props = {}
+                for key, value in entity.properties.items():
+                    if isinstance(value, (str, int, float, bool)):
+                        flattened_props[f"prop_{key}"] = value
+                    else:
+                        # Convert complex types to strings
+                        flattened_props[f"prop_{key}"] = str(value)
+                
                 session.run("""
                     MERGE (e:Entity {id: $id})
                     SET e.text = $text,
                         e.type = $type,
                         e.source_chunk_id = $source_chunk_id,
-                        e.confidence = $confidence,
-                        e.properties = $properties
-                    RETURN e
+                        e.confidence = $confidence
                 """, {
                     "id": entity.id,
                     "text": entity.text,
                     "type": entity.type.value,
                     "source_chunk_id": entity.source_chunk_id,
-                    "confidence": entity.confidence,
-                    "properties": entity.properties
+                    "confidence": entity.confidence
                 })
+                
+                # Add flattened properties as separate SET operations
+                if flattened_props:
+                    prop_sets = ", ".join([f"e.{key} = ${key}" for key in flattened_props.keys()])
+                    query = f"MATCH (e:Entity {{id: $id}}) SET {prop_sets}"
+                    params = {"id": entity.id, **flattened_props}
+                    session.run(query, params)
         
         logger.info(f"Added {len(entities)} entities to Neo4j")
     
@@ -62,6 +75,15 @@ class Neo4jKnowledgeGraph(KnowledgeGraph):
         """Add relations to the knowledge graph"""
         with self.driver.session(database=self.database) as session:
             for relation in relations:
+                # Flatten properties to primitive types only
+                flattened_props = {}
+                for key, value in relation.properties.items():
+                    if isinstance(value, (str, int, float, bool)):
+                        flattened_props[f"prop_{key}"] = value
+                    else:
+                        # Convert complex types to strings
+                        flattened_props[f"prop_{key}"] = str(value)
+                
                 session.run("""
                     MATCH (s:Entity {id: $subject_id})
                     MATCH (o:Entity {id: $object_id})
@@ -70,8 +92,7 @@ class Neo4jKnowledgeGraph(KnowledgeGraph):
                         predicate: $predicate
                     }]->(o)
                     SET r.source_chunk_id = $source_chunk_id,
-                        r.confidence = $confidence,
-                        r.properties = $properties
+                        r.confidence = $confidence
                     RETURN r
                 """, {
                     "id": relation.id,
@@ -79,9 +100,15 @@ class Neo4jKnowledgeGraph(KnowledgeGraph):
                     "object_id": relation.object_id,
                     "predicate": relation.predicate,
                     "source_chunk_id": relation.source_chunk_id,
-                    "confidence": relation.confidence,
-                    "properties": relation.properties
+                    "confidence": relation.confidence
                 })
+                
+                # Add flattened properties as separate SET operations
+                if flattened_props:
+                    prop_sets = ", ".join([f"r.{key} = ${key}" for key in flattened_props.keys()])
+                    query = f"MATCH ()-[r:RELATED {{id: $id}}]-() SET {prop_sets}"
+                    params = {"id": relation.id, **flattened_props}
+                    session.run(query, params)
         
         logger.info(f"Added {len(relations)} relations to Neo4j")
     

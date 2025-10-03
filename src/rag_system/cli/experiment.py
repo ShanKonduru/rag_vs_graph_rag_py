@@ -82,7 +82,7 @@ def run_evaluation(ctx, test_data, methods, output_dir, config, runs):
             device=system_config.embedding.device
         )
         
-        store_path = system_config.vector_store.storage_path
+        store_path = Path(system_config.vector_store.storage_path)
         if not store_path.exists():
             raise click.ClickException(f"Vector store not found at {store_path}")
         
