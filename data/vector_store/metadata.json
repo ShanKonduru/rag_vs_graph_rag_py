@@ -1,0 +1,18 @@
+{
+  "dimension": 384,
+  "index_type": "flat",
+  "distance_metric": "cosine",
+  "_next_index": 4,
+  "id_to_index": {
+    "f362d234d43e76f4466dc89c64f38312": 0,
+    "010146bec0b7e32d344206dc870eba15": 1,
+    "93d062a31ed77338a837c13a68dba557": 2,
+    "2449eeb16e745bccd2afa7959a4c1b8e": 3
+  },
+  "index_to_id": {
+    "0": "f362d234d43e76f4466dc89c64f38312",
+    "1": "010146bec0b7e32d344206dc870eba15",
+    "2": "93d062a31ed77338a837c13a68dba557",
+    "3": "2449eeb16e745bccd2afa7959a4c1b8e"
+  }
+}

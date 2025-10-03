@@ -1,0 +1,63 @@
+# Configuration for local development and testing
+
+# Embedding configuration - use smaller model for faster testing
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+  max_seq_length: 256  # Smaller for faster processing
+  device: "cpu"
+  batch_size: 16
+
+# Vector store configuration
+vector_store:
+  backend: "sqlite"  # Use SQLite for easier setup
+  index_type: "flat"
+  distance_metric: "cosine"
+  dimension: 384
+  storage_path: "./data/vector_store_dev"
+
+# Neo4j configuration - adjust for local setup
+neo4j:
+  uri: "bolt://localhost:7687"
+  username: "neo4j"
+  password: "dev_password"
+  database: "rag_dev"
+
+# Ollama configuration
+ollama:
+  base_url: "http://localhost:11434"
+  model_name: "llama2"  # or "mistral" for faster inference
+  temperature: 0.1  # Lower temperature for more consistent testing
+  max_tokens: 256   # Smaller for faster generation
+  timeout: 30
+
+# Document ingestion configuration
+ingestion:
+  chunk_size: 256   # Smaller chunks for testing
+  chunk_overlap: 25
+  supported_formats: ["txt", "md", "pdf"]
+  min_chunk_length: 25
+
+# Retrieval configuration
+retrieval:
+  top_k: 3          # Fewer results for faster testing
+  similarity_threshold: 0.6
+  graph_traversal_depth: 1  # Shallower traversal
+  max_graph_nodes: 10
+
+# Evaluation configuration
+evaluation:
+  metrics: ["exact_match", "f1", "rouge_l"]  # Fewer metrics for faster evaluation
+  output_dir: "./experiments/dev_results"
+
+# Experiment configuration
+experiment:
+  name: "dev_experiment"
+  methods: ["rag", "graph_rag"]  # Skip kg_only for faster testing
+  num_runs: 1
+  save_intermediate: false
+
+# Global settings
+log_level: "DEBUG"
+random_seed: 42
+data_dir: "./data_dev"
+output_dir: "./experiments_dev"

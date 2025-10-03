@@ -1,0 +1,34 @@
+[
+  {
+    "id": "f362d234d43e76f4466dc89c64f38312",
+    "content_length": 511,
+    "document_id": "cc0dab73e09db826dda26dd21c2f8e14",
+    "chunk_index": 0,
+    "source": "data\\documents\\ai_introduction.md",
+    "file_type": "markdown"
+  },
+  {
+    "id": "010146bec0b7e32d344206dc870eba15",
+    "content_length": 509,
+    "document_id": "cc0dab73e09db826dda26dd21c2f8e14",
+    "chunk_index": 1,
+    "source": "data\\documents\\ai_introduction.md",
+    "file_type": "markdown"
+  },
+  {
+    "id": "93d062a31ed77338a837c13a68dba557",
+    "content_length": 505,
+    "document_id": "cc0dab73e09db826dda26dd21c2f8e14",
+    "chunk_index": 2,
+    "source": "data\\documents\\ai_introduction.md",
+    "file_type": "markdown"
+  },
+  {
+    "id": "2449eeb16e745bccd2afa7959a4c1b8e",
+    "content_length": 417,
+    "document_id": "cc0dab73e09db826dda26dd21c2f8e14",
+    "chunk_index": 3,
+    "source": "data\\documents\\ai_introduction.md",
+    "file_type": "markdown"
+  }
+]

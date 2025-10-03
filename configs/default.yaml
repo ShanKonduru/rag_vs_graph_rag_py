@@ -1,0 +1,65 @@
+# Default configuration for RAG vs Graph RAG vs Knowledge Graph system
+
+# Embedding configuration
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+  max_seq_length: 512
+  device: "cpu"
+  batch_size: 32
+
+# Vector store configuration
+vector_store:
+  backend: "faiss"  # faiss or sqlite
+  index_type: "flat"  # flat or hnsw
+  distance_metric: "cosine"  # cosine or l2
+  dimension: 384  # Will be set automatically based on embedding model
+  storage_path: "./data/vector_store"
+
+# Neo4j configuration
+neo4j:
+  uri: "bolt://localhost:7687"
+  username: "neo4j"
+  password: "password"
+  database: "neo4j"
+
+# Ollama LLM configuration
+ollama:
+  base_url: "http://localhost:11434"
+  model_name: "llama2"
+  temperature: 0.7
+  max_tokens: 512
+  timeout: 60
+
+# Document ingestion configuration
+ingestion:
+  chunk_size: 512
+  chunk_overlap: 50
+  supported_formats: ["pdf", "txt", "html", "md", "docx"]
+  min_chunk_length: 50
+
+# Retrieval configuration
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  graph_traversal_depth: 2
+  max_graph_nodes: 20
+
+# Evaluation configuration
+evaluation:
+  metrics: ["exact_match", "f1", "rouge_l", "bleu"]
+  test_dataset_path: null
+  output_dir: "./experiments/results"
+
+# Experiment configuration
+experiment:
+  name: "default_experiment"
+  methods: ["rag", "graph_rag", "kg_only"]
+  grid_search_params: {}
+  num_runs: 1
+  save_intermediate: true
+
+# Global settings
+log_level: "INFO"
+random_seed: 42
+data_dir: "./data"
+output_dir: "./experiments"
