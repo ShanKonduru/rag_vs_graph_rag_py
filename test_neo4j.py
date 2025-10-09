@@ -5,7 +5,7 @@ from neo4j import GraphDatabase
 
 def test_neo4j():
     try:
-        driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'LocalInstance'))
+        driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'password'))
         
         # Test connection
         driver.verify_connectivity()
