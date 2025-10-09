@@ -19,13 +19,13 @@ vector_store:
 neo4j:
   uri: "bolt://localhost:7687"
   username: "neo4j"
-  password: "password"
+  password: "LocalInstance"
   database: "neo4j"
 
 # Ollama LLM configuration
 ollama:
   base_url: "http://localhost:11434"
-  model_name: "llama2"
+  model_name: "llama3.2:1b"
   temperature: 0.7
   max_tokens: 512
   timeout: 60
